@@ -2,7 +2,7 @@ const client = require('./turso')
 
 // Columns that are stored as JSON-encoded text
 const JSON_FIELDS = {
-  characters: ['tags', 'relaciones', 'sections'],
+  characters: ['tags', 'relaciones', 'sections', 'aliases'],
   events:     ['tags'],
   locations:  ['tags'],
   glossary:   ['tags'],
@@ -19,7 +19,7 @@ const SCHEMA = [
     id TEXT PRIMARY KEY,
     slug TEXT UNIQUE,
     name TEXT,
-    alias TEXT,
+    aliases TEXT,
     origin TEXT,
     faction TEXT,
     status TEXT,

@@ -63,7 +63,7 @@ const mockCharacter = {
   id: 'abc-123',
   slug: 'kaneda-jr',
   name: 'Kaneda Jr',
-  alias: 'El Heredero',
+  aliases: ['El Heredero'],
   origin: 'Providencia',
   faction: 'yakuma',
   status: 'activo',

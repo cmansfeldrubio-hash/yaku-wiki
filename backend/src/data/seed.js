@@ -3,7 +3,7 @@ const SEED_CHARACTERS = [
   {
     slug: 'pajur',
     name: 'Pajur',
-    alias: 'El Duende',
+    aliases: ['El Duende'],
     origin: 'Cajón del Maipo',
     faction: 'yakuma',
     status: 'activo',
@@ -18,7 +18,7 @@ const SEED_CHARACTERS = [
   {
     slug: 'limon',
     name: 'Limón',
-    alias: 'El más inteligente que todos',
+    aliases: ['El más inteligente que todos'],
     origin: 'Punta Arenas',
     faction: 'yakuma',
     status: 'activo',
@@ -33,7 +33,7 @@ const SEED_CHARACTERS = [
   {
     slug: 'eche',
     name: 'Eche',
-    alias: 'Doctor Echeverría Alfajorero',
+    aliases: ['Doctor Echeverría Alfajorero'],
     origin: 'La Florida',
     faction: 'yakuma',
     status: 'activo',
@@ -48,7 +48,7 @@ const SEED_CHARACTERS = [
   {
     slug: 'patrin',
     name: 'Patrin',
-    alias: 'El que mueve hilos',
+    aliases: ['El que mueve hilos'],
     origin: 'San Antonio',
     faction: 'yakuma',
     status: 'sospechoso',
@@ -63,7 +63,7 @@ const SEED_CHARACTERS = [
   {
     slug: 'pajian',
     name: 'Pajian',
-    alias: 'True Hero',
+    aliases: ['True Hero'],
     origin: 'Lampa',
     faction: 'yakuma',
     status: 'activo',
@@ -78,7 +78,7 @@ const SEED_CHARACTERS = [
   {
     slug: 'gartax',
     name: 'Gartax',
-    alias: 'Tel Aviv Biggest Soldier',
+    aliases: ['Tel Aviv Biggest Soldier'],
     origin: 'Puente Alto',
     faction: 'yakuma',
     status: 'activo',
@@ -93,7 +93,7 @@ const SEED_CHARACTERS = [
   {
     slug: 'chino',
     name: 'Chino',
-    alias: 'Sueño Eterno',
+    aliases: ['Sueño Eterno'],
     origin: 'Cerro Navia',
     faction: 'yakuma',
     status: 'activo',
@@ -108,7 +108,7 @@ const SEED_CHARACTERS = [
   {
     slug: 'jysus',
     name: 'Jysus',
-    alias: 'Androide Ping Pong',
+    aliases: ['Androide Ping Pong'],
     origin: 'Quilicura',
     faction: 'yakuma',
     status: 'activo',
@@ -123,7 +123,7 @@ const SEED_CHARACTERS = [
   {
     slug: 'krusty',
     name: 'Krusty',
-    alias: 'Porro y Hongo',
+    aliases: ['Porro y Hongo'],
     origin: 'Puente Alto',
     faction: 'yakuma',
     status: 'activo',
@@ -138,7 +138,7 @@ const SEED_CHARACTERS = [
   {
     slug: 'lupita',
     name: 'Lupita',
-    alias: 'Ebrio Local',
+    aliases: ['Ebrio Local'],
     origin: 'San Vicente de Tagua Tagua',
     faction: 'yakuma',
     status: 'activo',
@@ -153,7 +153,7 @@ const SEED_CHARACTERS = [
   {
     slug: 'max-pene',
     name: 'Max Pene',
-    alias: 'Tanque Dark Medieval',
+    aliases: ['Tanque Dark Medieval'],
     origin: 'Huechuraba',
     faction: 'yakuma',
     status: 'activo',
@@ -168,7 +168,7 @@ const SEED_CHARACTERS = [
   {
     slug: 'richi',
     name: 'Richi',
-    alias: 'Actual Alcalde de Yakutown',
+    aliases: ['Actual Alcalde de Yakutown'],
     origin: 'Lo Barnechea',
     faction: 'yakuma',
     status: 'activo',
@@ -183,7 +183,7 @@ const SEED_CHARACTERS = [
   {
     slug: 'mitata',
     name: 'Mitata',
-    alias: 'Fundador de Yakutown',
+    aliases: ['Fundador de Yakutown'],
     origin: 'Ñuñoa',
     faction: 'yakuma',
     status: 'leyenda',
@@ -198,7 +198,7 @@ const SEED_CHARACTERS = [
   {
     slug: 'memo',
     name: 'Memo',
-    alias: 'NPC Just Burger',
+    aliases: ['NPC Just Burger'],
     origin: 'San Antonio',
     faction: 'npc',
     status: 'activo',
@@ -213,7 +213,7 @@ const SEED_CHARACTERS = [
   {
     slug: 'juan-esteban',
     name: 'Juan Esteban',
-    alias: 'NPC Máximo Pintado de Amarillo',
+    aliases: ['NPC Máximo Pintado de Amarillo'],
     origin: 'Rotonda Grecia, Puente Alto',
     faction: 'npc',
     status: 'activo',
@@ -228,7 +228,7 @@ const SEED_CHARACTERS = [
   {
     slug: 'kitian',
     name: 'Kitian',
-    alias: 'El Peruano',
+    aliases: ['El Peruano'],
     origin: 'Puente Alto',
     faction: 'yakuma',
     status: 'activo',
@@ -243,7 +243,7 @@ const SEED_CHARACTERS = [
   {
     slug: 'charlos-rueda',
     name: 'Charlos Rueda',
-    alias: 'La Máquina de Pensar',
+    aliases: ['La Máquina de Pensar'],
     origin: 'Maipú',
     faction: 'yakuma',
     status: 'activo',
@@ -258,7 +258,7 @@ const SEED_CHARACTERS = [
   {
     slug: 'camilo-manfinfla',
     name: 'Camilo Manfinfla',
-    alias: 'Conspiranoico del Pueblo',
+    aliases: ['Conspiranoico del Pueblo'],
     origin: 'Rancagua',
     faction: 'yakuma',
     status: 'activo',
@@ -273,7 +273,7 @@ const SEED_CHARACTERS = [
   {
     slug: 'tio-pablo',
     name: 'Tío Pablo',
-    alias: 'El Héroe Recordado del Pueblo de Antaño',
+    aliases: ['El Héroe Recordado del Pueblo de Antaño'],
     origin: 'La Florida',
     faction: 'yakuma',
     status: 'leyenda',
@@ -288,7 +288,7 @@ const SEED_CHARACTERS = [
   {
     slug: 'arthur-denmark',
     name: 'Arthur Denmark',
-    alias: 'El Rey de los Anticonos',
+    aliases: ['El Rey de los Anticonos'],
     origin: 'Desconocido',
     faction: 'seis-siniestros',
     status: 'antagonista',
@@ -303,7 +303,7 @@ const SEED_CHARACTERS = [
   {
     slug: 'waton-noa',
     name: 'Waton Noa',
-    alias: 'El Ofendido Total de la Vida',
+    aliases: ['El Ofendido Total de la Vida'],
     origin: 'Desconocido',
     faction: 'seis-siniestros',
     status: 'antagonista',
@@ -318,7 +318,7 @@ const SEED_CHARACTERS = [
   {
     slug: 'la-pou',
     name: 'La Pou',
-    alias: 'El Antiyakuma',
+    aliases: ['El Antiyakuma'],
     origin: 'Desconocido',
     faction: 'seis-siniestros',
     status: 'antagonista',
@@ -333,7 +333,7 @@ const SEED_CHARACTERS = [
   {
     slug: 'manrike',
     name: 'Manrike',
-    alias: 'Yakuma Expulsado',
+    aliases: ['Yakuma Expulsado'],
     origin: 'Desconocido',
     faction: 'seis-siniestros',
     status: 'antagonista',
@@ -348,7 +348,7 @@ const SEED_CHARACTERS = [
   {
     slug: 'nachojeda',
     name: 'Nachojeda',
-    alias: 'Robot IA',
+    aliases: ['Robot IA'],
     origin: 'Desconocido',
     faction: 'seis-siniestros',
     status: 'antagonista',
@@ -363,7 +363,7 @@ const SEED_CHARACTERS = [
   {
     slug: 'el-ipinga',
     name: 'El Ipinga',
-    alias: 'El Peor Profe de la Galaxia',
+    aliases: ['El Peor Profe de la Galaxia'],
     origin: 'Desconocido',
     faction: 'seis-siniestros',
     status: 'antagonista',

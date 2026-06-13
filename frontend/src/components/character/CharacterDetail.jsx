@@ -18,7 +18,7 @@ export default function CharacterDetail({ character: c, onEdit }) {
         )}
         <div>
           <div className={styles.name}>{c.name}</div>
-          <div className={styles.alias}>{c.alias || '—'}</div>
+          <div className={styles.alias}>{c.aliases?.length > 0 ? `también conocido como: ${c.aliases.join(', ')}` : '—'}</div>
           <div className={styles.origin}>{c.origin || '—'}</div>
           <div style={{ marginTop: 8 }}>
             <StatusBadge status={c.status} yakuma_title={c.yakuma_title} />

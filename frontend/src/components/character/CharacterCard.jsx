@@ -30,7 +30,7 @@ export default function CharacterCard({ character: c, onEdit, onDelete }) {
         {c.image_url && <Avatar name={c.name} faction={c.faction} style={{ display: 'none' }} />}
         <div>
           <div className={styles.name}>{c.name}</div>
-          <div className={styles.alias}>{c.alias || '—'}</div>
+          <div className={styles.alias}>{c.aliases?.length > 0 ? c.aliases.join(', ') : '—'}</div>
           <div className={styles.origin}>{c.origin || '—'}</div>
         </div>
       </div>

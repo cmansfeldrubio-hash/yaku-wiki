@@ -131,7 +131,7 @@ export default function CharacterPage() {
           <div className={styles.headerRow}>
             <div className={styles.titleBlock}>
               <h1 className={styles.name}>{character.name}</h1>
-              {character.alias && <div className={styles.alias}>{character.alias}</div>}
+              {character.aliases?.length > 0 && <div className={styles.alias}>también conocido como: {character.aliases.join(', ')}</div>}
               {character.origin && <div className={styles.origin}>{character.origin}</div>}
               <div className={styles.badges}>
                 <span

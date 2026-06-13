@@ -13,7 +13,7 @@ const CharacterRepository = {
       const q = search.toLowerCase()
       chars = chars.filter(c =>
         c.name.toLowerCase().includes(q)          ||
-        (c.alias  || '').toLowerCase().includes(q) ||
+        (c.aliases || []).some(a => a.toLowerCase().includes(q)) ||
         (c.origin || '').toLowerCase().includes(q) ||
         (c.tags   || []).some(t => t.toLowerCase().includes(q))
       )

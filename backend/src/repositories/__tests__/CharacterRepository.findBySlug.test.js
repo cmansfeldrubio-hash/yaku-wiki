@@ -68,7 +68,7 @@ const arbitraryCharacter = fc.record({
   name: fc.string({ minLength: 1, maxLength: 50 })
     .filter(n => toSlug(n.trim()).length > 0)
     .map(n => n.trim()),
-  alias: fc.string({ maxLength: 40 }),
+  aliases: fc.array(fc.string({ minLength: 1, maxLength: 40 }), { maxLength: 3 }),
   origin: fc.string({ maxLength: 40 }),
   faction: fc.constantFrom('yakuma', 'seis-siniestros', 'npc', 'otro'),
   status: fc.constantFrom('activo', 'leyenda', 'antagonista', 'sospechoso', 'desconocido'),
@@ -108,7 +108,7 @@ describe('Property 2: Slug lookup returns the correct character (round-trip)', (
         expect(found.id).toBe(character.id)
         expect(found.slug).toBe(character.slug)
         expect(found.name).toBe(character.name)
-        expect(found.alias).toBe(character.alias)
+        expect(found.aliases).toEqual(character.aliases)
         expect(found.origin).toBe(character.origin)
         expect(found.faction).toBe(character.faction)
         expect(found.status).toBe(character.status)
