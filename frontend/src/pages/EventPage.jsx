@@ -10,6 +10,7 @@ import { getLocations } from '../api/locations'
 import Modal from '../components/ui/Modal'
 import EventForm from '../components/event/EventForm'
 import DeleteConfirmModal from '../components/ui/DeleteConfirmModal'
+import RichText from '../components/wiki/RichText'
 import styles from './EntityDetailPage.module.css'
 
 export default function EventPage() {
@@ -119,7 +120,7 @@ export default function EventPage() {
               {event.description && (
                 <div className={styles.section}>
                   <div className={styles.sectionLabel}>descripción</div>
-                  <p className={styles.sectionText}>{event.description}</p>
+                  <RichText text={event.description} excludeSlug={event.slug} className={styles.sectionText} />
                 </div>
               )}
 
