@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { createCharacter, updateCharacter, uploadImage } from '../api/characters'
 
 const EMPTY = {
-  name: '', alias: '', origin: '', faction: 'yakuma',
+  name: '', aliases: [], origin: '', faction: 'yakuma',
   status: 'activo', tags: '', yakuma_title: false,
   description: '', hito: '', poder: '', sections: [],
 }
@@ -17,7 +17,7 @@ export function useCharacterForm(character) {
     if (character) {
       setFields({
         name: character.name || '',
-        alias: character.alias || '',
+        aliases: character.aliases ? [...character.aliases] : [],
         origin: character.origin || '',
         faction: character.faction || 'yakuma',
         status: character.status || 'activo',
@@ -37,6 +37,18 @@ export function useCharacterForm(character) {
   }, [character])
 
   const set = (key, value) => setFields(f => ({ ...f, [key]: value }))
+
+  const addAlias = () => setFields(f => ({ ...f, aliases: [...f.aliases, ''] }))
+
+  const updateAlias = (index, value) => setFields(f => ({
+    ...f,
+    aliases: f.aliases.map((a, i) => i === index ? value : a),
+  }))
+
+  const removeAlias = (index) => setFields(f => ({
+    ...f,
+    aliases: f.aliases.filter((_, i) => i !== index),
+  }))
 
   const addSection = () => setFields(f => ({ ...f, sections: [...f.sections, { title: '', content: '' }] }))
 
@@ -85,5 +97,5 @@ export function useCharacterForm(character) {
     }
   }
 
-  return { fields, set, previewUrl, setImageFile, handleSubmit, saving, reset, addSection, updateSection, removeSection }
+  return { fields, set, previewUrl, setImageFile, handleSubmit, saving, reset, addSection, updateSection, removeSection, addAlias, updateAlias, removeAlias }
 }

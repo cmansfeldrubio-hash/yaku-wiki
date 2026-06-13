@@ -24,7 +24,7 @@ function sanitizeSections(sections) {
 function sanitize(body) {
   return {
     name:         (body.name         || '').trim(),
-    alias:        (body.alias        || '').trim(),
+    aliases:      Array.isArray(body.aliases) ? body.aliases.map(a => a.trim()).filter(Boolean) : [],
     origin:       (body.origin       || '').trim(),
     faction:      (body.faction      || 'otro').trim(),
     status:       (body.status       || 'activo').trim(),

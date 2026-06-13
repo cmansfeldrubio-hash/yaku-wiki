@@ -53,7 +53,7 @@ Las imágenes quedan accesibles en `/uploads/:filename`.
 POST /api/characters
 {
   "name": "Nuevo Yakuma",
-  "alias": "El Nuevo",
+  "aliases": ["El Nuevo"],
   "origin": "Maipú",
   "faction": "yakuma",
   "status": "activo",

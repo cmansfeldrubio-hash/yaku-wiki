@@ -18,7 +18,7 @@ const STATUSES = [
 ]
 
 export default function CharacterForm({ character, onSuccess, onCancel, showToast }) {
-  const { fields, set, previewUrl, setImageFile, handleSubmit, saving, addSection, updateSection, removeSection } = useCharacterForm(character)
+  const { fields, set, previewUrl, setImageFile, handleSubmit, saving, addSection, updateSection, removeSection, addAlias, updateAlias, removeAlias } = useCharacterForm(character)
   const fileRef = useRef()
 
   const handleFile = (e) => {
@@ -45,10 +45,6 @@ export default function CharacterForm({ character, onSuccess, onCancel, showToas
           <input className={styles.input} value={fields.name} onChange={e => set('name', e.target.value)} placeholder="Nombre del personaje" />
         </div>
         <div className={styles.group}>
-          <label className={styles.label}>alias / apodo</label>
-          <input className={styles.input} value={fields.alias} onChange={e => set('alias', e.target.value)} placeholder="El Duende..." />
-        </div>
-        <div className={styles.group}>
           <label className={styles.label}>origen (comuna)</label>
           <input className={styles.input} value={fields.origin} onChange={e => set('origin', e.target.value)} placeholder="Puente Alto, La Florida..." />
         </div>
@@ -73,6 +69,23 @@ export default function CharacterForm({ character, onSuccess, onCancel, showToas
             <input type="checkbox" checked={fields.yakuma_title} onChange={e => set('yakuma_title', e.target.checked)} style={{ accentColor: 'var(--yakuma)' }} />
             <span>tiene título yakuma</span>
           </label>
+        </div>
+        <div className={`${styles.group} ${styles.full}`}>
+          <label className={styles.label}>también conocido como (alias)</label>
+          <div className={styles.sections}>
+            {fields.aliases.map((alias, i) => (
+              <div key={i} className={styles.sectionBlockHeader}>
+                <input
+                  className={styles.input}
+                  value={alias}
+                  onChange={e => updateAlias(i, e.target.value)}
+                  placeholder="El Duende..."
+                />
+                <button type="button" className={styles.btnRemoveSection} onClick={() => removeAlias(i)}>eliminar</button>
+              </div>
+            ))}
+            <button type="button" className={styles.btnAddSection} onClick={addAlias}>+ agregar nombre</button>
+          </div>
         </div>
         <div className={`${styles.group} ${styles.full}`}>
           <label className={styles.label}>imagen del personaje</label>

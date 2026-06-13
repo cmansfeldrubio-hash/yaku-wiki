@@ -56,7 +56,7 @@ const characterArbitrary = () =>
     id: fc.uuid(),
     slug: slugArbitrary(),
     name: nonEmptyString(),
-    alias: nonEmptyString(),
+    aliases: fc.array(nonEmptyString(), { minLength: 1, maxLength: 3 }),
     origin: nonEmptyString(),
     faction: fc.constantFrom(...VALID_FACTIONS),
     status: fc.constantFrom(...VALID_STATUSES),
@@ -96,8 +96,10 @@ describe('Property 1: Character page displays all non-empty fields', () => {
         // Name must appear
         expect(textContent).toContain(character.name)
 
-        // Alias must appear
-        expect(textContent).toContain(character.alias)
+        // Aliases must appear
+        for (const alias of character.aliases) {
+          expect(textContent).toContain(alias)
+        }
 
         // Origin must appear
         expect(textContent).toContain(character.origin)
