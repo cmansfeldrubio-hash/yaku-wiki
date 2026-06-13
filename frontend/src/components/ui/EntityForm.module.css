@@ -1,0 +1,96 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.group { display: flex; flex-direction: column; gap: 6px; }
+.full  { grid-column: 1 / -1; }
+
+.label {
+  font-size: 12px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text2);
+  letter-spacing: 0.03em;
+}
+
+.input, .select, .textarea {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 9px 12px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.input:focus, .select:focus, .textarea:focus { border-color: var(--yakuma); }
+.select { appearance: none; cursor: pointer; }
+.select option { background: var(--bg3); }
+.textarea { resize: vertical; min-height: 70px; line-height: 1.5; }
+
+.imageArea {
+  width: 100%;
+  min-height: 120px;
+  background: var(--bg3);
+  border: 1px dashed var(--border2);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  overflow: hidden;
+}
+.imageArea:hover { border-color: var(--yakuma); }
+.imageArea.hasImage { border-style: solid; border-color: var(--border); }
+
+.imagePlaceholder {
+  font-size: 13px;
+  color: var(--text3);
+  font-family: 'Space Mono', monospace;
+}
+
+.preview {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.footer {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  padding-top: 1.25rem;
+  margin-top: 1.25rem;
+  border-top: 1px solid var(--border);
+}
+
+.btnCancel {
+  padding: 9px 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  font-size: 14px;
+  transition: all 0.15s;
+}
+.btnCancel:hover { color: var(--text); background: var(--bg3); }
+
+.btnSave {
+  padding: 9px 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--yakuma);
+  background: var(--yakuma);
+  color: #0d0d0f;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.15s;
+}
+.btnSave:hover:not(:disabled) { background: var(--yakuma2); border-color: var(--yakuma2); }
+.btnSave:disabled { opacity: 0.6; cursor: not-allowed; }
+
+@media (max-width: 480px) {
+  .grid { grid-template-columns: 1fr; }
+}

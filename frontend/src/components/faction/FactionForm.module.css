@@ -1,0 +1,50 @@
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.group { display: flex; flex-direction: column; gap: 6px; }
+.label { font-size: 12px; font-family: 'Space Mono', monospace; color: var(--text2); }
+
+.input {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 9px 12px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+}
+.input:focus { border-color: var(--yakuma); }
+
+.colorRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px 12px;
+}
+.colorPicker { width: 28px; height: 28px; border: none; background: none; cursor: pointer; padding: 0; border-radius: 4px; }
+.colorHex { font-size: 13px; font-family: 'Space Mono', monospace; color: var(--text2); }
+
+.footer {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  padding-top: 1.25rem;
+  margin-top: 1.25rem;
+  border-top: 1px solid var(--border);
+}
+
+.btnCancel {
+  padding: 9px 20px; border-radius: var(--radius);
+  border: 1px solid var(--border2); background: transparent;
+  color: var(--text2); font-size: 14px; transition: all 0.15s;
+}
+.btnCancel:hover { color: var(--text); background: var(--bg3); }
+
+.btnSave {
+  padding: 9px 20px; border-radius: var(--radius);
+  border: 1px solid var(--yakuma); background: var(--yakuma);
+  color: #0d0d0f; font-size: 14px; font-weight: 600; transition: all 0.15s;
+}
+.btnSave:hover:not(:disabled) { background: var(--yakuma2); }
+.btnSave:disabled { opacity: 0.6; cursor: not-allowed; }

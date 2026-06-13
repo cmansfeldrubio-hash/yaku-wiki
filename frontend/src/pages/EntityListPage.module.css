@@ -1,0 +1,58 @@
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text3);
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  transition: color 0.15s;
+}
+.breadcrumb:hover { color: var(--text2); }
+
+.breadcrumbArrow { font-size: 14px; }
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.count {
+  font-size: 12px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text3);
+}
+
+.newBtn {
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--yakuma);
+  background: var(--yakuma);
+  color: #0d0d0f;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.newBtn:hover { background: var(--yakuma2); border-color: var(--yakuma2); }
+
+.search {
+  margin-bottom: 1.25rem;
+}

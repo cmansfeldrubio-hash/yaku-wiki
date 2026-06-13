@@ -1,0 +1,54 @@
+.header {
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+
+.nav { display: flex; align-items: center; gap: 1.25rem; }
+
+.navLink {
+  font-size: 13px;
+  color: var(--text2);
+  text-decoration: none;
+  font-family: 'Space Mono', monospace;
+  transition: color 0.15s;
+}
+.navLink:hover { color: var(--yakuma); }
+
+@media (max-width: 700px) { .nav { display: none; } }
+
+.logoMark {
+  width: 36px;
+  height: 36px;
+  background: var(--yakuma);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 14px;
+  color: #0d0d0f;
+  letter-spacing: -1px;
+}
+
+.logoText { font-size: 18px; font-weight: 700; color: var(--text); letter-spacing: -0.5px; }
+.logoSub  { font-size: 11px; color: var(--text3); font-family: 'Space Mono', monospace; letter-spacing: 0.05em; }
+
+.right { display: flex; align-items: center; gap: 1.5rem; }
+
+.stats { display: flex; gap: 1.5rem; }
+
+.stat { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text2); }
+.stat strong { color: var(--text); font-weight: 600; }
+
+@media (max-width: 700px) { .stats { display: none; } }

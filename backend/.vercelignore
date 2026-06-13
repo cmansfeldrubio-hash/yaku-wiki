@@ -1,0 +1,7 @@
+uploads
+db.json
+scripts
+local.db
+*.test.js
+*.property.test.js
+__tests__

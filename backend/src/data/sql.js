@@ -1,0 +1,179 @@
+const client = require('./turso')
+
+// Columns that are stored as JSON-encoded text
+const JSON_FIELDS = {
+  characters: ['tags', 'relaciones', 'sections'],
+  events:     ['tags'],
+  locations:  ['tags'],
+  photos:     ['character_ids', 'event_ids', 'location_ids'],
+}
+
+// Columns that are stored as 0/1 integers
+const BOOL_FIELDS = {
+  characters: ['yakuma_title'],
+}
+
+const SCHEMA = [
+  `CREATE TABLE IF NOT EXISTS characters (
+    id TEXT PRIMARY KEY,
+    slug TEXT UNIQUE,
+    name TEXT,
+    alias TEXT,
+    origin TEXT,
+    faction TEXT,
+    status TEXT,
+    yakuma_title INTEGER DEFAULT 0,
+    tags TEXT,
+    description TEXT,
+    hito TEXT,
+    poder TEXT,
+    relaciones TEXT,
+    sections TEXT,
+    image_url TEXT,
+    created_at TEXT,
+    updated_at TEXT
+  )`,
+  `CREATE TABLE IF NOT EXISTS factions (
+    id TEXT PRIMARY KEY,
+    label TEXT,
+    color TEXT
+  )`,
+  `CREATE TABLE IF NOT EXISTS photos (
+    id TEXT PRIMARY KEY,
+    filename TEXT,
+    url TEXT,
+    cloudinary_id TEXT,
+    caption TEXT,
+    character_ids TEXT,
+    event_ids TEXT,
+    location_ids TEXT,
+    uploaded_at TEXT
+  )`,
+  `CREATE TABLE IF NOT EXISTS events (
+    id TEXT PRIMARY KEY,
+    slug TEXT UNIQUE,
+    name TEXT,
+    description TEXT,
+    date TEXT,
+    location_id TEXT,
+    tags TEXT,
+    image_url TEXT,
+    created_at TEXT,
+    updated_at TEXT
+  )`,
+  `CREATE TABLE IF NOT EXISTS locations (
+    id TEXT PRIMARY KEY,
+    slug TEXT UNIQUE,
+    name TEXT,
+    description TEXT,
+    type TEXT,
+    tags TEXT,
+    image_url TEXT,
+    created_at TEXT,
+    updated_at TEXT
+  )`,
+  `CREATE TABLE IF NOT EXISTS users (
+    id TEXT PRIMARY KEY,
+    google_id TEXT UNIQUE,
+    email TEXT,
+    name TEXT,
+    picture TEXT,
+    role TEXT,
+    created_at TEXT,
+    updated_at TEXT
+  )`,
+]
+
+async function createTables() {
+  for (const sql of SCHEMA) {
+    await client.execute(sql)
+  }
+}
+
+function decodeRow(table, row) {
+  if (!row) return null
+  const obj = {}
+  for (const key of Object.keys(row)) obj[key] = row[key]
+  for (const f of JSON_FIELDS[table] || []) {
+    obj[f] = obj[f] ? JSON.parse(obj[f]) : []
+  }
+  for (const f of BOOL_FIELDS[table] || []) {
+    obj[f] = !!obj[f]
+  }
+  return obj
+}
+
+function encodeRow(table, obj) {
+  const out = { ...obj }
+  for (const f of JSON_FIELDS[table] || []) {
+    out[f] = JSON.stringify(out[f] || [])
+  }
+  for (const f of BOOL_FIELDS[table] || []) {
+    out[f] = out[f] ? 1 : 0
+  }
+  return out
+}
+
+async function findAll(table) {
+  const res = await client.execute(`SELECT * FROM ${table}`)
+  return res.rows.map(r => decodeRow(table, r))
+}
+
+async function findById(table, id) {
+  const res = await client.execute({ sql: `SELECT * FROM ${table} WHERE id = :id`, args: { id } })
+  return decodeRow(table, res.rows[0])
+}
+
+async function findOneBy(table, column, value) {
+  const res = await client.execute({ sql: `SELECT * FROM ${table} WHERE ${column} = :value`, args: { value } })
+  return decodeRow(table, res.rows[0])
+}
+
+async function count(table) {
+  const res = await client.execute(`SELECT COUNT(*) as count FROM ${table}`)
+  return Number(res.rows[0].count)
+}
+
+async function insertRow(table, obj) {
+  const row = encodeRow(table, obj)
+  const cols = Object.keys(row)
+  const placeholders = cols.map(c => `:${c}`)
+  await client.execute({
+    sql: `INSERT INTO ${table} (${cols.join(', ')}) VALUES (${placeholders.join(', ')})`,
+    args: row,
+  })
+  return obj
+}
+
+async function updateRow(table, id, obj) {
+  const row = encodeRow(table, obj)
+  const cols = Object.keys(row).filter(c => c !== 'id')
+  const setClause = cols.map(c => `${c} = :${c}`).join(', ')
+  await client.execute({
+    sql: `UPDATE ${table} SET ${setClause} WHERE id = :id`,
+    args: { ...row, id },
+  })
+  return obj
+}
+
+async function deleteRow(table, id) {
+  const existing = await findById(table, id)
+  if (!existing) return null
+  await client.execute({ sql: `DELETE FROM ${table} WHERE id = :id`, args: { id } })
+  return existing
+}
+
+module.exports = {
+  client,
+  SCHEMA,
+  createTables,
+  decodeRow,
+  encodeRow,
+  findAll,
+  findById,
+  findOneBy,
+  count,
+  insertRow,
+  updateRow,
+  deleteRow,
+}

@@ -1,0 +1,90 @@
+.card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  position: relative;
+}
+.card:hover { border-color: var(--border2); background: var(--bg3); transform: translateY(-1px); }
+
+.yakumaBadge {
+  position: absolute;
+  top: 12px; right: 12px;
+  font-size: 10px;
+  font-family: 'Space Mono', monospace;
+  color: var(--yakuma);
+  background: rgba(200,240,96,0.1);
+  border: 1px solid rgba(200,240,96,0.2);
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+.top { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+
+.img {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.name  { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.alias { font-size: 12px; color: var(--text2); }
+.origin { font-size: 11px; color: var(--text3); font-family: 'Space Mono', monospace; margin-top: 2px; }
+
+.desc {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.5;
+  margin-bottom: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.tag {
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: var(--bg4);
+  color: var(--text3);
+  font-family: 'Space Mono', monospace;
+}
+
+.actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.btnEdit, .btnDelete {
+  flex: 1;
+  padding: 6px;
+  border-radius: var(--radius);
+  font-size: 12px;
+  transition: all 0.15s;
+}
+
+.btnEdit {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text2);
+}
+.btnEdit:hover { background: var(--bg4); color: var(--text); border-color: var(--border2); }
+
+.btnDelete {
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--siniestro);
+}
+.btnDelete:hover { background: rgba(255,68,68,0.08); border-color: rgba(255,68,68,0.3); }

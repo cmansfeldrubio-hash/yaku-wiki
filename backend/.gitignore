@@ -1,0 +1,15 @@
+node_modules
+.env
+!.env.example
+*.db
+*.db-*
+
+# Legacy local data — now migrated to Turso + Cloudinary
+uploads/
+db.json
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
