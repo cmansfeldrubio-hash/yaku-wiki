@@ -11,11 +11,9 @@
 }
 
 .popover {
-  position: absolute;
-  bottom: calc(100% + 8px);
-  left: 0;
+  position: fixed;
+  transform: translateY(-100%) translateY(-8px);
   z-index: 50;
-  width: 260px;
   background: var(--bg3);
   border: 1px solid var(--border2);
   border-radius: var(--radius);
@@ -26,6 +24,10 @@
   line-height: 1.5;
   color: var(--text);
   pointer-events: none;
+}
+
+.popoverBelow {
+  transform: translateY(8px);
 }
 
 .popoverHeader {
