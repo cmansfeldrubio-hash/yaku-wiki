@@ -5,6 +5,7 @@ const JSON_FIELDS = {
   characters: ['tags', 'relaciones', 'sections'],
   events:     ['tags'],
   locations:  ['tags'],
+  glossary:   ['tags'],
   photos:     ['character_ids', 'event_ids', 'location_ids'],
 }
 
@@ -69,6 +70,15 @@ const SCHEMA = [
     type TEXT,
     tags TEXT,
     image_url TEXT,
+    created_at TEXT,
+    updated_at TEXT
+  )`,
+  `CREATE TABLE IF NOT EXISTS glossary (
+    id TEXT PRIMARY KEY,
+    slug TEXT UNIQUE,
+    name TEXT,
+    description TEXT,
+    tags TEXT,
     created_at TEXT,
     updated_at TEXT
   )`,

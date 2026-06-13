@@ -8,6 +8,8 @@ import EventsPage from './pages/EventsPage'
 import EventPage from './pages/EventPage'
 import LocationsPage from './pages/LocationsPage'
 import LocationPage from './pages/LocationPage'
+import GlossaryPage from './pages/GlossaryPage'
+import GlossaryTermPage from './pages/GlossaryTermPage'
 import GalleryPage from './pages/GalleryPage'
 import UsersPage from './pages/UsersPage'
 import NotFoundPage from './pages/NotFoundPage'
@@ -25,6 +27,8 @@ export default function App() {
         <Route path="/evento/:slug" element={<EventPage />} />
         <Route path="/ubicaciones" element={<LocationsPage />} />
         <Route path="/ubicacion/:slug" element={<LocationPage />} />
+        <Route path="/la-palabra" element={<GlossaryPage />} />
+        <Route path="/la-palabra/:slug" element={<GlossaryTermPage />} />
         <Route path="/galeria" element={<GalleryPage />} />
         <Route path="/usuarios" element={<UsersPage />} />
         <Route path="*" element={<NotFoundPage />} />
