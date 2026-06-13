@@ -102,12 +102,12 @@ describe('CharacterCard navigation', () => {
   })
 })
 
-describe('Route / renders HomePage with CharacterGrid', () => {
+describe('Route /personajes renders CharactersPage with CharacterGrid', () => {
   beforeEach(() => {
     vi.clearAllMocks()
   })
 
-  it('renders HomePage at route /', () => {
+  it('renders CharactersPage at route /personajes', () => {
     useCharacters.mockReturnValue({
       characters: [mockCharacter],
       total: 1,
@@ -117,14 +117,14 @@ describe('Route / renders HomePage with CharacterGrid', () => {
     })
 
     render(
-      <MemoryRouter initialEntries={['/']}>
+      <MemoryRouter initialEntries={['/personajes']}>
         <ToastProvider>
           <App />
         </ToastProvider>
       </MemoryRouter>
     )
 
-    // HomePage shows the character grid with character names
+    // CharactersPage shows the character grid with character names
     expect(screen.getByText('Kaneda Jr')).toBeInTheDocument()
   })
 })
@@ -153,7 +153,7 @@ describe('CharacterPage back link', () => {
     )
 
     const backLink = screen.getByText('volver a la wiki')
-    expect(backLink.closest('a')).toHaveAttribute('href', '/?faction=yakuma')
+    expect(backLink.closest('a')).toHaveAttribute('href', '/personajes?faction=yakuma')
   })
 
   it('back link goes to / when no faction param', () => {
@@ -175,7 +175,7 @@ describe('CharacterPage back link', () => {
     )
 
     const backLink = screen.getByText('volver a la wiki')
-    expect(backLink.closest('a')).toHaveAttribute('href', '/')
+    expect(backLink.closest('a')).toHaveAttribute('href', '/personajes')
   })
 })
 
@@ -262,7 +262,7 @@ describe('CharacterPage delete button', () => {
         <ToastProvider>
           <Routes>
             <Route path="/personaje/:slug" element={<CharacterPage />} />
-            <Route path="/" element={<div data-testid="home-page">Home</div>} />
+            <Route path="/personajes" element={<div data-testid="home-page">Home</div>} />
           </Routes>
         </ToastProvider>
       </MemoryRouter>
@@ -282,7 +282,7 @@ describe('CharacterPage delete button', () => {
     const confirmBtn = confirmButtons.find(btn => btn.textContent === 'eliminar' && btn !== deleteButton)
     await userEvent.click(confirmBtn)
 
-    // After successful delete, should navigate to /
+    // After successful delete, should navigate to /personajes
     await waitFor(() => {
       expect(screen.getByTestId('home-page')).toBeInTheDocument()
     })
