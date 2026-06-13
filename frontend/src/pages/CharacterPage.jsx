@@ -30,7 +30,7 @@ export default function CharacterPage() {
 
   // Build back link preserving faction param
   const factionParam = searchParams.get('faction')
-  const backTo = factionParam ? `/?faction=${encodeURIComponent(factionParam)}` : '/'
+  const backTo = factionParam ? `/personajes?faction=${encodeURIComponent(factionParam)}` : '/personajes'
 
   // Handle delete
   const handleDeleteConfirm = async () => {
@@ -38,7 +38,7 @@ export default function CharacterPage() {
       await deleteCharacter(character.id)
       closeModal()
       showToast(`${character.name} eliminado`, 'success')
-      navigate('/')
+      navigate('/personajes')
     } catch (e) {
       showToast(e.message || 'Error eliminando personaje', 'error')
     }
@@ -66,7 +66,7 @@ export default function CharacterPage() {
       <div className={styles.page}>
         <div className={styles.errorState}>
           <p className={styles.errorMsg}>Personaje no encontrado</p>
-          <Link to="/" className={styles.backLink}>← volver a la wiki</Link>
+          <Link to="/personajes" className={styles.backLink}>← volver a la wiki</Link>
         </div>
       </div>
     )

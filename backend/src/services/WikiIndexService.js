@@ -14,11 +14,12 @@ function excerpt(text) {
 function toEntry(item, { type, pathPrefix, names }) {
   return {
     type,
-    slug:      item.slug,
-    path:      `/${pathPrefix}/${item.slug}`,
-    names:     names.filter(Boolean),
-    excerpt:   excerpt(item.description),
-    image_url: item.image_url || '',
+    slug:       item.slug,
+    path:       `/${pathPrefix}/${item.slug}`,
+    names:      names.filter(Boolean),
+    excerpt:    excerpt(item.description),
+    image_url:  item.image_url || '',
+    created_at: item.created_at || null,
   }
 }
 

@@ -2,11 +2,12 @@ const client = require('./turso')
 
 // Columns that are stored as JSON-encoded text
 const JSON_FIELDS = {
-  characters: ['tags', 'relaciones', 'sections', 'aliases'],
-  events:     ['tags'],
-  locations:  ['tags'],
-  glossary:   ['tags'],
-  photos:     ['character_ids', 'event_ids', 'location_ids'],
+  characters:   ['tags', 'relaciones', 'sections', 'aliases'],
+  events:       ['tags'],
+  locations:    ['tags'],
+  glossary:     ['tags'],
+  photos:       ['character_ids', 'event_ids', 'location_ids'],
+  home_content: ['sections'],
 }
 
 // Columns that are stored as 0/1 integers
@@ -80,6 +81,12 @@ const SCHEMA = [
     description TEXT,
     tags TEXT,
     created_at TEXT,
+    updated_at TEXT
+  )`,
+  `CREATE TABLE IF NOT EXISTS home_content (
+    id TEXT PRIMARY KEY,
+    banner_image_url TEXT,
+    sections TEXT,
     updated_at TEXT
   )`,
   `CREATE TABLE IF NOT EXISTS users (

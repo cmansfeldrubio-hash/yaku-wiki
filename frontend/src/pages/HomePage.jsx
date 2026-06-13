@@ -1,144 +1,111 @@
-import { useState, useCallback } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useState, useMemo } from 'react'
+import { Link } from 'react-router-dom'
+import { useAuth } from '../hooks/useAuth'
+import { useHome } from '../hooks/useHome'
+import { useWikiIndex } from '../hooks/useWikiIndex'
 import { useToast } from '../hooks/useToast'
-import { useCharacters } from '../hooks/useCharacters'
-import { useStats } from '../hooks/useStats'
-import { useFactions } from '../hooks/useFactions'
-import { deleteCharacter } from '../api/characters'
-
-import Sidebar from '../components/layout/Sidebar'
-import SearchInput from '../components/ui/SearchInput'
-import CharacterGrid from '../components/character/CharacterGrid'
-import CharacterForm from '../components/character/CharacterForm'
-import FactionForm from '../components/faction/FactionForm'
 import Modal from '../components/ui/Modal'
-import DeleteConfirmModal from '../components/ui/DeleteConfirmModal'
-
+import HomeForm from '../components/home/HomeForm'
+import RichText from '../components/wiki/RichText'
 import styles from './HomePage.module.css'
 
+const TYPE_LABELS = {
+  character: 'personaje',
+  location: 'ubicación',
+  event: 'evento',
+  glossary: 'la palabra',
+}
+
+const RECOMMENDED_COUNT = 6
+
 export default function HomePage() {
+  const { isOwner } = useAuth()
+  const { home, loading, reload } = useHome()
+  const index = useWikiIndex()
   const { showToast } = useToast()
-  const [searchParams, setSearchParams] = useSearchParams()
 
-  const activeFaction = searchParams.get('faction') || ''
-  const setActiveFaction = (faction) => {
-    if (faction) {
-      setSearchParams({ faction })
-    } else {
-      setSearchParams({})
-    }
+  const [editing, setEditing] = useState(false)
+
+  const recommended = useMemo(() => {
+    return [...index]
+      .filter(e => e.created_at)
+      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+      .slice(0, RECOMMENDED_COUNT)
+  }, [index])
+
+  const handleEditSuccess = async () => {
+    setEditing(false)
+    await reload()
+    showToast('Página de inicio actualizada', 'success')
   }
 
-  const [search, setSearch] = useState('')
-  const handleSearch = useCallback((val) => setSearch(val), [])
+  if (loading) return null
 
-  const { characters, total, loading, error, reload: reloadChars } = useCharacters(activeFaction, search)
-  const { stats, reload: reloadStats } = useStats()
-  const { factions, reload: reloadFactions } = useFactions()
-
-  const factionCounts = {
-    total: stats.total,
-    yakuma: stats.yakumas,
-    'seis-siniestros': stats.siniestros,
-    npc: stats.npcs,
-  }
-
-  // Modal state
-  const [modal, setModal] = useState(null) // 'create' | 'edit' | 'delete' | 'faction'
-  const [selected, setSelected] = useState(null)
-
-  const closeModal = () => { setModal(null); setSelected(null) }
-
-  const onEdit = (char) => { setSelected(char); setModal('edit') }
-  const onDelete = (char) => { setSelected(char); setModal('delete') }
-  const onNewCharacter = () => { setSelected(null); setModal('create') }
-  const onNewFaction = () => setModal('faction')
-
-  const afterMutation = async () => {
-    await Promise.all([reloadChars(), reloadStats(), reloadFactions()])
-  }
-
-  const handleFormSuccess = async () => {
-    const action = modal === 'create' ? 'Personaje creado' : 'Personaje actualizado'
-    closeModal()
-    await afterMutation()
-    showToast(action, 'success')
-  }
-
-  const handleDeleteConfirm = async () => {
-    try {
-      await deleteCharacter(selected.id)
-      closeModal()
-      await afterMutation()
-      showToast(`${selected.name} eliminado`, 'success')
-    } catch (e) {
-      showToast(e.message || 'Error eliminando', 'error')
-    }
-  }
-
-  const handleFactionSuccess = async () => {
-    closeModal()
-    await reloadFactions()
-    await reloadStats()
-  }
-
-  const sectionLabel = {
-    '': 'todos los personajes',
-    yakuma: 'yakumas',
-    'seis-siniestros': 'los seis siniestros',
-    npc: 'npcs',
-    otro: 'otros',
-  }
+  const sections = home?.sections || []
+  const bannerUrl = home?.banner_image_url || ''
 
   return (
-    <>
-      <div className={styles.layout}>
-        <Sidebar
-          factionCounts={factionCounts}
-          activeFaction={activeFaction}
-          onFactionChange={setActiveFaction}
-          onNewCharacter={onNewCharacter}
-          onNewFaction={onNewFaction}
-        />
-        <main className={styles.main}>
-          <SearchInput onChange={handleSearch} />
-          <div className={styles.sectionHeader}>
-            <span className={styles.sectionTitle}>{sectionLabel[activeFaction] ?? activeFaction}</span>
-            <span className={styles.resultsCount}>{total} personajes</span>
-          </div>
-          <CharacterGrid
-            characters={characters}
-            loading={loading}
-            error={error}
-            onEdit={onEdit}
-            onDelete={onDelete}
-          />
-        </main>
-      </div>
-
-      {/* Create modal */}
-      <Modal isOpen={modal === 'create'} onClose={closeModal} title="Nuevo personaje">
-        <CharacterForm character={null} onSuccess={handleFormSuccess} onCancel={closeModal} showToast={showToast} />
-      </Modal>
-
-      {/* Edit modal */}
-      <Modal isOpen={modal === 'edit'} onClose={closeModal} title={selected ? `Editar — ${selected.name}` : ''}>
-        <CharacterForm character={selected} onSuccess={handleFormSuccess} onCancel={closeModal} showToast={showToast} />
-      </Modal>
-
-      {/* Delete confirm */}
-      {modal === 'delete' && selected && (
-        <DeleteConfirmModal
-          characterName={selected.name}
-          onConfirm={handleDeleteConfirm}
-          onCancel={closeModal}
-        />
+    <div className={styles.page}>
+      {(bannerUrl || isOwner) && (
+        <div className={styles.bannerWrap}>
+          {bannerUrl
+            ? <img src={bannerUrl} alt="" className={styles.bannerImg} />
+            : (
+              <button type="button" className={styles.bannerEmpty} onClick={() => setEditing(true)} style={{ width: '100%', height: '100%', border: 'none', background: 'none' }}>
+                click para subir un banner (proporción 3:1)
+              </button>
+            )
+          }
+        </div>
       )}
 
-      {/* Faction modal */}
-      <Modal isOpen={modal === 'faction'} onClose={closeModal} title="Nueva facción" maxWidth="440px">
-        <FactionForm onSuccess={handleFactionSuccess} onCancel={closeModal} showToast={showToast} />
+      {isOwner && (
+        <div className={styles.topBar}>
+          <button className={styles.btnEdit} onClick={() => setEditing(true)}>editar inicio</button>
+        </div>
+      )}
+
+      {sections.length > 0 ? (
+        <div className={styles.sections}>
+          {sections.map((section, i) => (
+            <div key={i} className={styles.section}>
+              <h2 className={styles.sectionTitle}>{section.title}</h2>
+              <RichText text={section.content} as="div" className={styles.sectionText} />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className={styles.empty}>
+          {isOwner
+            ? 'Esta página aún no tiene contenido. Usa "editar inicio" para agregar secciones.'
+            : 'Esta página aún no tiene contenido.'}
+        </div>
+      )}
+
+      {recommended.length > 0 && (
+        <div className={styles.recommended}>
+          <div className={styles.recommendedTitle}>artículos recomendados</div>
+          <div className={styles.articleGrid}>
+            {recommended.map(entry => (
+              <Link key={`${entry.type}-${entry.slug}`} to={entry.path} className={styles.articleCard}>
+                {entry.image_url
+                  ? <img src={entry.image_url} alt="" className={styles.articleImg} />
+                  : <div className={styles.articleImgFallback}>◇</div>
+                }
+                <div className={styles.articleBody}>
+                  <div className={styles.articleType}>{TYPE_LABELS[entry.type] || entry.type}</div>
+                  <div className={styles.articleTitle}>{entry.names[0]}</div>
+                  {entry.excerpt && <div className={styles.articleExcerpt}>{entry.excerpt}</div>}
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <Modal isOpen={editing} onClose={() => setEditing(false)} title="Editar página de inicio">
+        <HomeForm home={home} onSuccess={handleEditSuccess} onCancel={() => setEditing(false)} showToast={showToast} />
       </Modal>
-    </>
+    </div>
   )
 }
