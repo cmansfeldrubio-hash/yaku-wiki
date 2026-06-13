@@ -7,6 +7,7 @@ import { getTermBySlug, deleteTerm } from '../api/glossary'
 import Modal from '../components/ui/Modal'
 import GlossaryForm from '../components/glossary/GlossaryForm'
 import DeleteConfirmModal from '../components/ui/DeleteConfirmModal'
+import RichText from '../components/wiki/RichText'
 import styles from './EntityDetailPage.module.css'
 
 export default function GlossaryTermPage() {
@@ -98,7 +99,7 @@ export default function GlossaryTermPage() {
               {term.description && (
                 <div className={styles.section}>
                   <div className={styles.sectionLabel}>descripción</div>
-                  <p className={styles.sectionText}>{term.description}</p>
+                  <RichText text={term.description} excludeSlug={term.slug} className={styles.sectionText} />
                 </div>
               )}
 

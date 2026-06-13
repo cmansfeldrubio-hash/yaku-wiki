@@ -1,0 +1,61 @@
+.link {
+  position: relative;
+  color: var(--npc);
+  text-decoration: underline dotted;
+  text-decoration-color: var(--border2);
+  cursor: pointer;
+}
+
+.link:hover {
+  text-decoration-color: var(--npc);
+}
+
+.popover {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 0;
+  z-index: 50;
+  width: 260px;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  padding: 0.75rem;
+  text-decoration: none;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text);
+  pointer-events: none;
+}
+
+.popoverHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.popoverImg {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.popoverTitle {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.popoverType {
+  font-size: 10px;
+  font-family: 'Space Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text3);
+}
+
+.popoverExcerpt {
+  color: var(--text2);
+}

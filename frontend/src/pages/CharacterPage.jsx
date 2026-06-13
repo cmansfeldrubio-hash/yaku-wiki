@@ -11,6 +11,7 @@ import StatusBadge from '../components/ui/StatusBadge'
 import Modal from '../components/ui/Modal'
 import CharacterForm from '../components/character/CharacterForm'
 import DeleteConfirmModal from '../components/ui/DeleteConfirmModal'
+import RichText from '../components/wiki/RichText'
 import styles from './CharacterPage.module.css'
 
 export default function CharacterPage() {
@@ -171,21 +172,21 @@ export default function CharacterPage() {
             {character.description && (
               <div id="descripcion" className={styles.section}>
                 <div className={styles.sectionLabel}>descripción</div>
-                <p className={styles.sectionText}>{character.description}</p>
+                <RichText text={character.description} excludeSlug={character.slug} className={styles.sectionText} />
               </div>
             )}
 
             {character.hito && (
               <div id="hito-yakuma" className={styles.section}>
                 <div className={styles.sectionLabel}>hito yakuma</div>
-                <p className={styles.sectionText}>{character.hito}</p>
+                <RichText text={character.hito} excludeSlug={character.slug} className={styles.sectionText} />
               </div>
             )}
 
             {character.poder && (
               <div id="poder-capacidad" className={styles.section}>
                 <div className={styles.sectionLabel}>poder / capacidad</div>
-                <p className={styles.sectionText}>{character.poder}</p>
+                <RichText text={character.poder} excludeSlug={character.slug} className={styles.sectionText} />
               </div>
             )}
 
@@ -201,7 +202,7 @@ export default function CharacterPage() {
             {(character.sections || []).map(section => (
               <div key={section.id} id={section.id} className={styles.section}>
                 <div className={styles.sectionLabel}>{section.title}</div>
-                <p className={styles.sectionText}>{section.content}</p>
+                <RichText text={section.content} excludeSlug={character.slug} className={styles.sectionText} />
               </div>
             ))}
           </div>

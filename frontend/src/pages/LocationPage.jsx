@@ -8,6 +8,7 @@ import { getLocationBySlug, deleteLocation } from '../api/locations'
 import Modal from '../components/ui/Modal'
 import LocationForm from '../components/location/LocationForm'
 import DeleteConfirmModal from '../components/ui/DeleteConfirmModal'
+import RichText from '../components/wiki/RichText'
 import styles from './EntityDetailPage.module.css'
 
 export default function LocationPage() {
@@ -111,7 +112,7 @@ export default function LocationPage() {
               {location.description && (
                 <div className={styles.section}>
                   <div className={styles.sectionLabel}>descripción</div>
-                  <p className={styles.sectionText}>{location.description}</p>
+                  <RichText text={location.description} excludeSlug={location.slug} className={styles.sectionText} />
                 </div>
               )}
 
