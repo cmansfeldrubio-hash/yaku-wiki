@@ -76,6 +76,15 @@ const db = {
   addToCollection:      async (name, item)  => { await ready(); return insertRow(name, item) },
   updateInCollection:   async (name, id, data) => { await ready(); return updateRow(name, id, data) },
   removeFromCollection: async (name, id)    => { await ready(); return deleteRow(name, id) },
+
+  // Home content (singleton row)
+  getHomeContent: async ()     => { await ready(); return findById('home_content', 'home') },
+  setHomeContent: async (data) => {
+    await ready()
+    const existing = await findById('home_content', 'home')
+    if (existing) return updateRow('home_content', 'home', data)
+    return insertRow('home_content', { ...data, id: 'home' })
+  },
 }
 
 module.exports = db

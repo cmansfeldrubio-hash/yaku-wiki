@@ -3,6 +3,7 @@ import { useStats } from './hooks/useStats'
 
 import Header from './components/layout/Header'
 import HomePage from './pages/HomePage'
+import CharactersPage from './pages/CharactersPage'
 import CharacterPage from './pages/CharacterPage'
 import EventsPage from './pages/EventsPage'
 import EventPage from './pages/EventPage'
@@ -22,6 +23,7 @@ export default function App() {
       <Header stats={stats} />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/personajes" element={<CharactersPage />} />
         <Route path="/personaje/:slug" element={<CharacterPage />} />
         <Route path="/eventos" element={<EventsPage />} />
         <Route path="/evento/:slug" element={<EventPage />} />

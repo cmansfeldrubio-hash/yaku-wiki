@@ -13,7 +13,8 @@ export default function Header({ stats }) {
         </div>
       </Link>
       <nav className={styles.nav}>
-        <Link to="/" className={styles.navLink}>personajes</Link>
+        <Link to="/" className={styles.navLink}>inicio</Link>
+        <Link to="/personajes" className={styles.navLink}>personajes</Link>
         <Link to="/eventos" className={styles.navLink}>eventos</Link>
         <Link to="/ubicaciones" className={styles.navLink}>ubicaciones</Link>
         <Link to="/la-palabra" className={styles.navLink}>la palabra</Link>

@@ -15,6 +15,7 @@ const glossaryRoutes  = require('./routes/glossary')
 const authRoutes      = require('./routes/auth')
 const userRoutes      = require('./routes/users')
 const wikiIndexRoutes = require('./routes/wikiIndex')
+const homeRoutes      = require('./routes/home')
 
 const app = express()
 
@@ -34,6 +35,7 @@ app.use('/api/glosario',   glossaryRoutes)
 app.use('/api/auth',       authRoutes)
 app.use('/api/users',      userRoutes)
 app.use('/api/wiki-index', wikiIndexRoutes)
+app.use('/api/home',       homeRoutes)
 
 // --- Error handler (must be last) ---
 app.use(errorHandler)
