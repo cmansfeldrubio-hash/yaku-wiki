@@ -1,12 +1,20 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useGlossaryForm } from '../../hooks/useGlossaryForm'
 import { useGlossaryTags } from '../../hooks/useGlossaryTags'
 import styles from '../ui/EntityForm.module.css'
 
 export default function GlossaryForm({ term, onSuccess, onCancel, showToast }) {
-  const { fields, set, toggleTag, addTag, removeTagFromFields, handleSubmit, saving } = useGlossaryForm(term)
+  const { fields, set, toggleTag, addTag, removeTagFromFields, previewUrl, setImageFile, handleSubmit, saving } = useGlossaryForm(term)
   const { tags: existingTags, reload: reloadTags, removeTag } = useGlossaryTags()
   const [newTag, setNewTag] = useState('')
+  const fileRef = useRef()
+
+  const handleFile = (e) => {
+    const file = e.target.files[0]
+    if (!file) return
+    const url = URL.createObjectURL(file)
+    setImageFile(file, url)
+  }
 
   const onSubmit = async () => {
     try {
@@ -95,6 +103,20 @@ export default function GlossaryForm({ term, onSuccess, onCancel, showToast }) {
         <div className={`${styles.group} ${styles.full}`}>
           <label className={styles.label}>descripción</label>
           <textarea className={styles.textarea} value={fields.description} onChange={e => set('description', e.target.value)} placeholder="Explicación del concepto..." rows={4} />
+        </div>
+
+        <div className={`${styles.group} ${styles.full}`}>
+          <label className={styles.label}>imagen</label>
+          <div
+            className={`${styles.imageArea} ${previewUrl ? styles.hasImage : ''}`}
+            onClick={() => fileRef.current.click()}
+          >
+            {previewUrl
+              ? <img src={previewUrl} alt="preview" className={styles.preview} />
+              : <span className={styles.imagePlaceholder}>click para subir imagen</span>
+            }
+          </div>
+          <input ref={fileRef} type="file" accept="image/*" style={{ display: 'none' }} onChange={handleFile} />
         </div>
       </div>
 

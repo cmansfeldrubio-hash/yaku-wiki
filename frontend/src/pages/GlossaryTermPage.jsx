@@ -79,7 +79,16 @@ export default function GlossaryTermPage() {
 
       <div className={styles.layout}>
         <article className={styles.article}>
-          <div className={styles.heroFallback}>§</div>
+          {term.image_url ? (
+            <img
+              src={term.image_url}
+              alt={term.name}
+              className={styles.heroImage}
+              onError={(e) => { e.target.style.display = 'none' }}
+            />
+          ) : (
+            <div className={styles.heroFallback}>§</div>
+          )}
 
           <div className={styles.content}>
             <div className={styles.headerRow}>
