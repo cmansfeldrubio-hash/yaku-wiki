@@ -1,6 +1,23 @@
 const { v4: uuidv4 } = require('uuid')
 const CharacterRepository = require('../repositories/CharacterRepository')
 const { uploadBuffer } = require('../utils/cloudinary')
+const { findNameCollision } = require('./DuplicateCheckService')
+
+function duplicateError(collision) {
+  return Object.assign(
+    new Error(`Ya existe ${collision.label} llamado "${collision.name}" — elige otro nombre`),
+    { status: 409 }
+  )
+}
+
+// Checks the character's name and every alias against all wiki entities
+// (since both feed the auto-link index), excluding the character itself.
+async function checkNameCollisions(data, excludeId) {
+  for (const name of [data.name, ...(data.aliases || [])]) {
+    const collision = await findNameCollision(name, { excludeId })
+    if (collision) throw duplicateError(collision)
+  }
+}
 
 function toSlug(name) {
   return name
@@ -62,8 +79,10 @@ const CharacterService = {
     if (!name || !name.trim()) throw Object.assign(new Error('name es requerido'), { status: 400 })
     if (!faction)              throw Object.assign(new Error('faction es requerida'), { status: 400 })
 
-    const now = new Date().toISOString()
     const data = sanitize(body)
+    await checkNameCollisions(data)
+
+    const now = new Date().toISOString()
     const newChar = {
       ...data,
       id:         uuidv4(),
@@ -79,6 +98,7 @@ const CharacterService = {
     if (!existing) throw Object.assign(new Error('Personaje no encontrado'), { status: 404 })
 
     const data = sanitize({ ...existing, ...body })
+    await checkNameCollisions(data, existing.id)
     const updated = {
       ...data,
       id:         existing.id,
@@ -92,6 +112,10 @@ const CharacterService = {
   async patch(id, body) {
     const existing = await CharacterRepository.findById(id)
     if (!existing) throw Object.assign(new Error('Personaje no encontrado'), { status: 404 })
+
+    if (body.name || body.aliases) {
+      await checkNameCollisions({ ...existing, ...body }, existing.id)
+    }
 
     const updated = {
       ...existing,

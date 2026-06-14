@@ -1,6 +1,14 @@
 const { v4: uuidv4 } = require('uuid')
 const { toSlug } = require('../utils/slug')
 const { uploadBuffer } = require('../utils/cloudinary')
+const { findNameCollision } = require('./DuplicateCheckService')
+
+function duplicateError(collision) {
+  return Object.assign(
+    new Error(`Ya existe ${collision.label} llamado "${collision.name}" — elige otro nombre`),
+    { status: 409 }
+  )
+}
 
 // Generic service factory for simple top-level collections (events, locations).
 // `sanitize` validates/normalizes the request body into storable fields.
@@ -27,6 +35,9 @@ function createEntityService(repository, { sanitize, notFoundMessage, folder }) 
     async create(body) {
       if (!body.name || !body.name.trim()) throw Object.assign(new Error('name es requerido'), { status: 400 })
 
+      const collision = await findNameCollision(body.name)
+      if (collision) throw duplicateError(collision)
+
       const now = new Date().toISOString()
       const data = sanitize(body)
       const newItem = {
@@ -41,6 +52,12 @@ function createEntityService(repository, { sanitize, notFoundMessage, folder }) 
 
     async update(id, body) {
       const existing = await this.getById(id)
+
+      if (body.name && body.name.trim() && body.name.trim() !== existing.name) {
+        const collision = await findNameCollision(body.name, { excludeId: existing.id })
+        if (collision) throw duplicateError(collision)
+      }
+
       const data = sanitize({ ...existing, ...body })
       const updated = {
         ...data,
