@@ -1,13 +1,7 @@
 import { useRef } from 'react'
 import { useCharacterForm } from '../../hooks/useCharacterForm'
+import { useFactions } from '../../hooks/useFactions'
 import styles from './CharacterForm.module.css'
-
-const FACTIONS = [
-  { value: 'yakuma', label: 'Yakuma' },
-  { value: 'seis-siniestros', label: 'Los Seis Siniestros' },
-  { value: 'npc', label: 'NPC' },
-  { value: 'otro', label: 'Otro' },
-]
 
 const STATUSES = [
   { value: 'activo', label: 'Activo' },
@@ -19,6 +13,7 @@ const STATUSES = [
 
 export default function CharacterForm({ character, onSuccess, onCancel, showToast }) {
   const { fields, set, previewUrl, setImageFile, handleSubmit, saving, addSection, updateSection, removeSection, addAlias, updateAlias, removeAlias } = useCharacterForm(character)
+  const { factions } = useFactions()
   const fileRef = useRef()
 
   const handleFile = (e) => {
@@ -51,7 +46,7 @@ export default function CharacterForm({ character, onSuccess, onCancel, showToas
         <div className={styles.group}>
           <label className={styles.label}>facción *</label>
           <select className={styles.select} value={fields.faction} onChange={e => set('faction', e.target.value)}>
-            {FACTIONS.map(f => <option key={f.value} value={f.value}>{f.label}</option>)}
+            {factions.map(f => <option key={f.id} value={f.id}>{f.label}</option>)}
           </select>
         </div>
         <div className={styles.group}>

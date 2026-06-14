@@ -38,11 +38,3 @@ export const getFactionColor = (faction) =>
 
 export const getFactionBg = (faction) =>
   FACTION_COLORS[faction]?.bg ?? 'rgba(96,96,112,0.12)'
-
-export const FACTIONS_STATIC = [
-  { id: '',               label: 'Todos',              dot: '#606070' },
-  { id: 'yakuma',         label: 'Yakumas',            dot: '#c8f060' },
-  { id: 'seis-siniestros',label: 'Los Seis Siniestros',dot: '#ff4444' },
-  { id: 'npc',            label: 'NPCs',               dot: '#60b8f0' },
-  { id: 'otro',           label: 'Otros',              dot: '#f0c040' },
-]
