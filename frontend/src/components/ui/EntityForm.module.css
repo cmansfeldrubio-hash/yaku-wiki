@@ -58,6 +58,53 @@
   display: block;
 }
 
+.hint {
+  font-size: 13px;
+  color: var(--text3);
+}
+
+.tagOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tagOption {
+  padding: 6px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text2);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.tagOption:hover { border-color: var(--border2); color: var(--text); }
+
+.tagOptionActive {
+  border-color: var(--yakuma);
+  background: rgba(200,240,96,0.12);
+  color: var(--yakuma);
+}
+
+.tagAddRow {
+  display: flex;
+  gap: 8px;
+}
+.tagAddRow .input { flex: 1; }
+
+.btnAddTag {
+  padding: 9px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  font-size: 14px;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+.btnAddTag:hover { background: var(--bg3); color: var(--text); }
+
 .footer {
   display: flex;
   gap: 8px;
