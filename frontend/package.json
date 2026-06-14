@@ -12,6 +12,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "gifsicle-wasm-browser": "^1.5.19",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-router-dom": "^7.17.0"
