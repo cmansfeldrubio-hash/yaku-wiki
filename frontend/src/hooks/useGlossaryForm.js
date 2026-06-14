@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { createTerm, updateTerm } from '../api/glossary'
 
 const EMPTY = {
-  name: '', description: '', tags: '',
+  name: '', description: '', tags: [],
 }
 
 export function useGlossaryForm(term) {
@@ -14,7 +14,7 @@ export function useGlossaryForm(term) {
       setFields({
         name: term.name || '',
         description: term.description || '',
-        tags: (term.tags || []).join(', '),
+        tags: term.tags ? [...term.tags] : [],
       })
     } else {
       setFields(EMPTY)
@@ -23,14 +23,22 @@ export function useGlossaryForm(term) {
 
   const set = (key, value) => setFields(f => ({ ...f, [key]: value }))
 
+  const toggleTag = (tag) => setFields(f => ({
+    ...f,
+    tags: f.tags.includes(tag) ? f.tags.filter(t => t !== tag) : [...f.tags, tag],
+  }))
+
+  const addTag = (tag) => {
+    const clean = tag.trim()
+    if (!clean) return
+    setFields(f => f.tags.includes(clean) ? f : { ...f, tags: [...f.tags, clean] })
+  }
+
   const handleSubmit = async () => {
     if (!fields.name.trim()) throw new Error('El nombre es requerido')
     setSaving(true)
     try {
-      const payload = {
-        ...fields,
-        tags: fields.tags ? fields.tags.split(',').map(t => t.trim()).filter(Boolean) : [],
-      }
+      const payload = { ...fields }
       let saved
       if (term?.id) {
         saved = await updateTerm(term.id, payload)
@@ -43,5 +51,5 @@ export function useGlossaryForm(term) {
     }
   }
 
-  return { fields, set, handleSubmit, saving }
+  return { fields, set, toggleTag, addTag, handleSubmit, saving }
 }
