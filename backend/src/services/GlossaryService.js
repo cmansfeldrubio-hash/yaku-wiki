@@ -6,12 +6,14 @@ function sanitize(body) {
     name:        (body.name        || '').trim(),
     description: (body.description || '').trim(),
     tags:        Array.isArray(body.tags) ? body.tags.map(t => t.trim()).filter(Boolean) : [],
+    image_url:   (body.image_url   || '').trim(),
   }
 }
 
 const service = createEntityService(GlossaryRepository, {
   sanitize,
   notFoundMessage: 'Concepto no encontrado',
+  folder: 'glossary',
 })
 
 service.removeTag = async (tag) => {

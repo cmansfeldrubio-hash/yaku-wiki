@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { createTerm, updateTerm } from '../api/glossary'
+import { createTerm, updateTerm, uploadTermImage } from '../api/glossary'
 
 const EMPTY = {
   name: '', description: '', tags: [],
@@ -7,6 +7,8 @@ const EMPTY = {
 
 export function useGlossaryForm(term) {
   const [fields, setFields] = useState(EMPTY)
+  const [pendingImage, setPendingImage] = useState(null)
+  const [previewUrl, setPreviewUrl] = useState(null)
   const [saving, setSaving] = useState(false)
 
   useEffect(() => {
@@ -16,9 +18,12 @@ export function useGlossaryForm(term) {
         description: term.description || '',
         tags: term.tags ? [...term.tags] : [],
       })
+      setPreviewUrl(term.image_url || null)
     } else {
       setFields(EMPTY)
+      setPreviewUrl(null)
     }
+    setPendingImage(null)
   }, [term])
 
   const set = (key, value) => setFields(f => ({ ...f, [key]: value }))
@@ -39,6 +44,11 @@ export function useGlossaryForm(term) {
     tags: f.tags.filter(t => t !== tag),
   }))
 
+  const setImageFile = (file, url) => {
+    setPendingImage(file)
+    setPreviewUrl(url)
+  }
+
   const handleSubmit = async () => {
     if (!fields.name.trim()) throw new Error('El nombre es requerido')
     setSaving(true)
@@ -47,8 +57,12 @@ export function useGlossaryForm(term) {
       let saved
       if (term?.id) {
         saved = await updateTerm(term.id, payload)
+        if (pendingImage) await uploadTermImage(term.id, pendingImage)
       } else {
         saved = await createTerm(payload)
+        if (pendingImage && saved.id) {
+          try { await uploadTermImage(saved.id, pendingImage) } catch (_) {}
+        }
       }
       return saved
     } finally {
@@ -56,5 +70,5 @@ export function useGlossaryForm(term) {
     }
   }
 
-  return { fields, set, toggleTag, addTag, removeTagFromFields, handleSubmit, saving }
+  return { fields, set, toggleTag, addTag, removeTagFromFields, previewUrl, setImageFile, handleSubmit, saving }
 }

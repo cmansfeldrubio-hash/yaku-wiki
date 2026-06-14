@@ -80,6 +80,7 @@ const SCHEMA = [
     name TEXT,
     description TEXT,
     tags TEXT,
+    image_url TEXT,
     created_at TEXT,
     updated_at TEXT
   )`,
@@ -101,9 +102,22 @@ const SCHEMA = [
   )`,
 ]
 
+// Columns added after the initial table creation — applied with
+// ALTER TABLE for databases created before the column existed.
+const COLUMN_MIGRATIONS = [
+  { table: 'glossary', column: 'image_url', type: 'TEXT' },
+]
+
 async function createTables() {
   for (const sql of SCHEMA) {
     await client.execute(sql)
+  }
+  for (const { table, column, type } of COLUMN_MIGRATIONS) {
+    try {
+      await client.execute(`ALTER TABLE ${table} ADD COLUMN ${column} ${type}`)
+    } catch (err) {
+      if (!/duplicate column/i.test(err.message || '')) throw err
+    }
   }
 }
 

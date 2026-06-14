@@ -5,6 +5,7 @@ import { useCharacters } from '../hooks/useCharacters'
 import { useEntityList } from '../hooks/useEntityList'
 import { getEvents } from '../api/events'
 import { getLocations } from '../api/locations'
+import { getTerms } from '../api/glossary'
 import { useToast } from '../hooks/useToast'
 import { useAuth } from '../hooks/useAuth'
 import { uploadPhoto, updatePhoto, deletePhoto } from '../api/photos'
@@ -20,6 +21,7 @@ export default function GalleryPage() {
   const { characters } = useCharacters('', '')
   const { items: events } = useEntityList(getEvents)
   const { items: locations } = useEntityList(getLocations)
+  const { items: terms } = useEntityList(getTerms)
 
   const [uploadOpen, setUploadOpen] = useState(false)
   const [selected, setSelected] = useState(null) // photo being viewed/edited
@@ -35,6 +37,32 @@ export default function GalleryPage() {
     ...(photo.location_ids || []).map(id => locationById[id]?.name),
   ].filter(Boolean).join(', ')
 
+  // Synthetic, read-only entries for images assigned directly to wiki entities
+  // (character/location/event/glossary banners) so they also show up here.
+  const entityPhotos = [
+    ...characters.filter(c => c.image_url).map(c => ({
+      id: `character-${c.id}`, url: c.image_url, caption: c.name, source: 'character', slug: c.slug,
+    })),
+    ...locations.filter(l => l.image_url).map(l => ({
+      id: `location-${l.id}`, url: l.image_url, caption: l.name, source: 'location', slug: l.slug,
+    })),
+    ...events.filter(e => e.image_url).map(e => ({
+      id: `event-${e.id}`, url: e.image_url, caption: e.name, source: 'event', slug: e.slug,
+    })),
+    ...terms.filter(t => t.image_url).map(t => ({
+      id: `glossary-${t.id}`, url: t.image_url, caption: t.name, source: 'glossary', slug: t.slug,
+    })),
+  ]
+
+  const allPhotos = [...photos, ...entityPhotos]
+
+  const entityLink = (photo) => ({
+    character: `/personaje/${photo.slug}`,
+    location: `/ubicacion/${photo.slug}`,
+    event: `/evento/${photo.slug}`,
+    glossary: `/la-palabra/${photo.slug}`,
+  })[photo.source]
+
   return (
     <div className={styles.page}>
       <Link to="/" className={styles.breadcrumb}>
@@ -45,7 +73,7 @@ export default function GalleryPage() {
       <div className={styles.header}>
         <div>
           <h1 className={styles.title}>galería</h1>
-          <span className={styles.count}>{total} fotos</span>
+          <span className={styles.count}>{total + entityPhotos.length} fotos</span>
         </div>
         {canEdit && <button className={styles.uploadBtn} onClick={() => setUploadOpen(true)}>+ subir foto</button>}
       </div>
@@ -53,16 +81,16 @@ export default function GalleryPage() {
       {loading && <div className={styles.loading}>cargando galería...</div>}
       {error && <div className={styles.errorMsg}>{error}</div>}
 
-      {!loading && !error && photos.length === 0 && (
+      {!loading && !error && allPhotos.length === 0 && (
         <div className={styles.empty}>todavía no hay fotos en la galería</div>
       )}
 
       <div className={styles.grid}>
-        {photos.map(photo => (
+        {allPhotos.map(photo => (
           <button key={photo.id} className={styles.thumb} onClick={() => setSelected(photo)}>
             <img src={photo.url} alt={photo.caption || 'foto'} />
-            {tagNames(photo) && (
-              <div className={styles.thumbTags}>{tagNames(photo)}</div>
+            {(tagNames(photo) || photo.caption) && (
+              <div className={styles.thumbTags}>{tagNames(photo) || photo.caption}</div>
             )}
           </button>
         ))}
@@ -81,8 +109,11 @@ export default function GalleryPage() {
       </Modal>
 
       {/* Detail / edit modal */}
-      <Modal isOpen={!!selected} onClose={() => setSelected(null)} title={canEdit ? 'Editar foto' : 'Foto'}>
-        {selected && (
+      <Modal isOpen={!!selected} onClose={() => setSelected(null)} title={selected?.source ? selected.caption : (canEdit ? 'Editar foto' : 'Foto')}>
+        {selected && selected.source && (
+          <EntityPhotoDetail photo={selected} link={entityLink(selected)} onClose={() => setSelected(null)} />
+        )}
+        {selected && !selected.source && (
           <PhotoDetail
             photo={selected}
             characters={characters}
@@ -272,6 +303,23 @@ function PhotoDetail({ photo, characters, events, locations, tagNames, canEdit, 
         <button className={styles.btnSave} onClick={handleSave} disabled={saving}>
           {saving ? 'guardando...' : 'guardar'}
         </button>
+      </div>
+    </>
+  )
+}
+
+// Read-only view for images that come from a character/location/event/glossary
+// banner image rather than from the photos table — editing those happens on
+// the entity's own page.
+function EntityPhotoDetail({ photo, link, onClose }) {
+  return (
+    <>
+      <img src={photo.url} alt={photo.caption || 'foto'} className={styles.detailImg} />
+      {photo.caption && <p className={styles.previewCaption}>{photo.caption}</p>}
+      <div className={styles.footer}>
+        {link && <Link to={link} className={styles.galleryLink}>ver página →</Link>}
+        <div style={{ flex: 1 }} />
+        <button className={styles.btnCancel} onClick={onClose}>cerrar</button>
       </div>
     </>
   )
