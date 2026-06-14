@@ -1,0 +1,177 @@
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text3);
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  transition: color 0.15s;
+}
+.breadcrumb:hover { color: var(--text2); }
+
+.breadcrumbArrow { font-size: 14px; }
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.count {
+  font-size: 12px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text3);
+}
+
+.createBtn {
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--yakuma);
+  background: var(--yakuma);
+  color: #0d0d0f;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.createBtn:hover { background: var(--yakuma2); border-color: var(--yakuma2); }
+
+.loading, .empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  font-size: 14px;
+  color: var(--text3);
+  font-family: 'Space Mono', monospace;
+  text-align: center;
+}
+
+.errorMsg {
+  font-size: 14px;
+  color: var(--siniestro);
+  text-align: center;
+  padding: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+.cardTile {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.cardTile:hover { border-color: var(--yakuma); transform: translateY(-2px); }
+
+.cardImg {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1024 / 1536;
+  object-fit: cover;
+  background: var(--bg3);
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0.6rem 0.7rem;
+}
+
+.cardName {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cardMeta {
+  font-size: 11px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text3);
+}
+
+.detailImg {
+  width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+  background: var(--bg3);
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+}
+
+.detailMeta {
+  font-size: 12px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text3);
+  margin: 0 0 0.5rem;
+}
+
+.detailEffect {
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.5;
+  margin: 0 0 1rem;
+  white-space: pre-wrap;
+}
+
+.detailFooter {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding-top: 1.25rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.btnCancel {
+  padding: 9px 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btnCancel:hover { color: var(--text); background: var(--bg3); }
+
+.btnDelete {
+  padding: 9px 20px;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--siniestro);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btnDelete:hover { background: rgba(255, 68, 68, 0.08); border-color: rgba(255, 68, 68, 0.3); }

@@ -99,6 +99,22 @@ const SCHEMA = [
     uploaded_by_name TEXT,
     uploaded_at TEXT
   )`,
+  `CREATE TABLE IF NOT EXISTS cards (
+    id TEXT PRIMARY KEY,
+    card_type TEXT,
+    name TEXT,
+    subtype TEXT,
+    rarity TEXT,
+    cost INTEGER,
+    effect_text TEXT,
+    character_id TEXT,
+    source_image_url TEXT,
+    rendered_url TEXT,
+    rendered_cloudinary_id TEXT,
+    created_by TEXT,
+    created_by_name TEXT,
+    created_at TEXT
+  )`,
   `CREATE TABLE IF NOT EXISTS home_content (
     id TEXT PRIMARY KEY,
     banner_image_url TEXT,
