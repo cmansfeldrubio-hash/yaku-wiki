@@ -93,7 +93,7 @@ export const TEXT_AREAS = {
     fontSizeCqw: 8,
     fontFamily: "'Bebas Neue', sans-serif",
     color: '#ffffff',
-    align: 'right',
+    align: 'left',
   },
   subtype: {
     topPct: 66.5,
