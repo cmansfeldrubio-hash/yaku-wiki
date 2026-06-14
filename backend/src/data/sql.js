@@ -88,6 +88,8 @@ const SCHEMA = [
     id TEXT PRIMARY KEY,
     banner_image_url TEXT,
     sections TEXT,
+    ad_image_url TEXT,
+    ad_link_url TEXT,
     updated_at TEXT
   )`,
   `CREATE TABLE IF NOT EXISTS users (
@@ -106,6 +108,8 @@ const SCHEMA = [
 // ALTER TABLE for databases created before the column existed.
 const COLUMN_MIGRATIONS = [
   { table: 'glossary', column: 'image_url', type: 'TEXT' },
+  { table: 'home_content', column: 'ad_image_url', type: 'TEXT' },
+  { table: 'home_content', column: 'ad_link_url', type: 'TEXT' },
 ]
 
 async function createTables() {

@@ -3,14 +3,34 @@ import { useHomeForm } from '../../hooks/useHomeForm'
 import styles from './HomeForm.module.css'
 
 export default function HomeForm({ home, onSuccess, onCancel, showToast }) {
-  const { fields, previewUrl, setImageFile, handleSubmit, saving, addSection, updateSection, removeSection } = useHomeForm(home)
+  const {
+    fields,
+    previewUrl,
+    adPreviewUrl,
+    setImageFile,
+    setAdImageFile,
+    setAdLinkUrl,
+    handleSubmit,
+    saving,
+    addSection,
+    updateSection,
+    removeSection,
+  } = useHomeForm(home)
   const fileRef = useRef()
+  const adFileRef = useRef()
 
   const handleFile = (e) => {
     const file = e.target.files[0]
     if (!file) return
     const url = URL.createObjectURL(file)
     setImageFile(file, url)
+  }
+
+  const handleAdFile = (e) => {
+    const file = e.target.files[0]
+    if (!file) return
+    const url = URL.createObjectURL(file)
+    setAdImageFile(file, url)
   }
 
   const onSubmit = async () => {
@@ -37,6 +57,26 @@ export default function HomeForm({ home, onSuccess, onCancel, showToast }) {
             }
           </div>
           <input ref={fileRef} type="file" accept="image/*" style={{ display: 'none' }} onChange={handleFile} />
+        </div>
+
+        <div className={styles.group}>
+          <label className={styles.label}>publicidad lateral (proporción 9:16)</label>
+          <div
+            className={`${styles.imageArea} ${styles.adImageArea} ${adPreviewUrl ? styles.hasImage : ''}`}
+            onClick={() => adFileRef.current.click()}
+          >
+            {adPreviewUrl
+              ? <img src={adPreviewUrl} alt="preview publicidad" className={styles.preview} />
+              : <span className={styles.imagePlaceholder}>click para subir publicidad</span>
+            }
+          </div>
+          <input ref={adFileRef} type="file" accept="image/*" style={{ display: 'none' }} onChange={handleAdFile} />
+          <input
+            className={styles.input}
+            value={fields.ad_link_url}
+            onChange={e => setAdLinkUrl(e.target.value)}
+            placeholder="link al hacer click en la publicidad (https://...)"
+          />
         </div>
 
         <div className={styles.group}>
