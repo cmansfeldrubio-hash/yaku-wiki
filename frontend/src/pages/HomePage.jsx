@@ -43,6 +43,9 @@ export default function HomePage() {
 
   const sections = home?.sections || []
   const bannerUrl = home?.banner_image_url || ''
+  const adImageUrl = home?.ad_image_url || ''
+  const adLinkUrl = home?.ad_link_url || ''
+  const showAd = adImageUrl || isOwner
 
   return (
     <div className={styles.page}>
@@ -65,7 +68,28 @@ export default function HomePage() {
         </div>
       )}
 
-      <div className={styles.layout}>
+      <div className={`${styles.layout} ${showAd ? styles.withAd : ''}`}>
+        {showAd && (
+          <aside className={styles.adAside}>
+            {adImageUrl
+              ? (
+                adLinkUrl
+                  ? (
+                    <a href={adLinkUrl} target="_blank" rel="noopener noreferrer" className={styles.adLink}>
+                      <img src={adImageUrl} alt="publicidad" className={styles.adImg} />
+                    </a>
+                  )
+                  : <img src={adImageUrl} alt="publicidad" className={styles.adImg} />
+              )
+              : (
+                <button type="button" className={styles.adEmpty} onClick={() => setEditing(true)}>
+                  click para subir publicidad (proporción 9:16)
+                </button>
+              )
+            }
+          </aside>
+        )}
+
         <div className={styles.main}>
           {sections.length > 0 ? (
             <div className={styles.sections}>

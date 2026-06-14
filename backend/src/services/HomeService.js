@@ -11,7 +11,7 @@ function sanitizeSections(sections) {
     .filter(s => s.title)
 }
 
-const EMPTY = { id: 'home', banner_image_url: '', sections: [], updated_at: null }
+const EMPTY = { id: 'home', banner_image_url: '', sections: [], ad_image_url: '', ad_link_url: '', updated_at: null }
 
 const HomeService = {
   async get() {
@@ -25,6 +25,8 @@ const HomeService = {
       id:               'home',
       banner_image_url: existing?.banner_image_url || '',
       sections:         sanitizeSections(body.sections),
+      ad_image_url:     existing?.ad_image_url || '',
+      ad_link_url:      (body.ad_link_url || '').trim(),
       updated_at:       new Date().toISOString(),
     }
     return HomeRepository.save(data)
@@ -37,6 +39,22 @@ const HomeService = {
       id:               'home',
       banner_image_url: result.secure_url,
       sections:         existing?.sections || [],
+      ad_image_url:     existing?.ad_image_url || '',
+      ad_link_url:      existing?.ad_link_url || '',
+      updated_at:       new Date().toISOString(),
+    }
+    return HomeRepository.save(data)
+  },
+
+  async setAdImage(file) {
+    const existing = await HomeRepository.get()
+    const result = await uploadBuffer(file.buffer, 'yakutown/home')
+    const data = {
+      id:               'home',
+      banner_image_url: existing?.banner_image_url || '',
+      sections:         existing?.sections || [],
+      ad_image_url:     result.secure_url,
+      ad_link_url:      existing?.ad_link_url || '',
       updated_at:       new Date().toISOString(),
     }
     return HomeRepository.save(data)

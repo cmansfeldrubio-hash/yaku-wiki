@@ -62,13 +62,55 @@
   align-items: start;
 }
 
+.layout.withAd {
+  grid-template-columns: 180px 1fr 280px;
+}
+
 @media (max-width: 800px) {
   .layout { grid-template-columns: 1fr; }
+  .layout.withAd { grid-template-columns: 1fr; }
 }
 
 .main {
   min-width: 0;
 }
+
+.adAside {
+  position: sticky;
+  top: 80px;
+}
+
+.adImg {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+
+.adLink {
+  display: block;
+}
+
+.adEmpty {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  font-size: 13px;
+  color: var(--text3);
+  font-family: 'Space Mono', monospace;
+  background: var(--bg2);
+  border: 1px dashed var(--border2);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.adEmpty:hover { border-color: var(--yakuma); color: var(--text2); }
 
 .sections {
   display: flex;

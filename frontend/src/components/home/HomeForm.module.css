@@ -42,6 +42,11 @@
 .imageArea:hover { border-color: var(--yakuma); }
 .imageArea.hasImage { border-style: solid; border-color: var(--border); }
 
+.adImageArea {
+  width: 160px;
+  aspect-ratio: 9 / 16;
+}
+
 .imagePlaceholder {
   font-size: 13px;
   color: var(--text3);

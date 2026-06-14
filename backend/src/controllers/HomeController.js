@@ -18,6 +18,13 @@ const HomeController = {
     }
     res.json(await HomeService.setImage(req.file))
   }),
+
+  uploadAdImage: wrap(async (req, res) => {
+    if (!req.file) {
+      return res.status(400).json({ error: 'No se recibió ningún archivo' })
+    }
+    res.json(await HomeService.setAdImage(req.file))
+  }),
 }
 
 module.exports = HomeController
