@@ -4,7 +4,7 @@
   aspect-ratio: 1024 / 1536;
   overflow: hidden;
   border-radius: 12px;
-  background: #0d0d0f;
+  background: transparent;
   user-select: none;
   container-type: inline-size;
 }
