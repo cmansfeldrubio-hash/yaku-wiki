@@ -48,65 +48,137 @@ export const EFFECT_SUBTYPE_OPTIONS = [
   { value: 'ritual', label: 'Ritual' },
 ]
 
-// Anchor point for the *center* of each badge's bbox, as % of the card frame.
-// Sits in the empty top-right corner of card-font.png.
-export const BADGE_ANCHOR = { xPct: 86, yPct: 13 }
-export const BADGE_TARGET_WIDTH_PCT = 19 // bbox width as % of card width
+// Anchor point for the *center* of each badge's bbox, as % of the card frame,
+// and the bbox width as % of the card width. Sits in the empty top-right
+// corner of card-font.png, over the gray ring decoration. The painted frame
+// artwork only covers y in [9.5%, 89.7%], so yPct must leave enough headroom
+// for the tallest badge (legendaria) not to poke out above the card.
+export const BADGE_LAYOUT = { xPct: 85, yPct: 20, widthPct: 19 }
 
 // Cost number rendered centered on top of the rarity badge's bbox.
-export const COST_AREA = { ...BADGE_ANCHOR }
+export const COST_LAYOUT = { xPct: 85, yPct: 20, fontSizeCqw: 5 }
 
 // Computes the position/size (in % of the card frame) of a rarity badge image
-// so that its measured bbox is centered on BADGE_ANCHOR and its bbox width
-// equals BADGE_TARGET_WIDTH_PCT.
-export function getBadgeStyle(rarity) {
+// so that its measured bbox is centered on badgeLayout.xPct/yPct and its bbox
+// width equals badgeLayout.widthPct.
+export function getBadgeStyle(rarity, badgeLayout = BADGE_LAYOUT) {
   const badge = RARITY_BADGES[rarity] || RARITY_BADGES.comun
   const [naturalW, naturalH] = badge.naturalSize
   const { x, y, w, h } = badge.bbox
 
-  const scale = (BADGE_TARGET_WIDTH_PCT / 100 * CARD_WIDTH) / w
+  const scale = (badgeLayout.widthPct / 100 * CARD_WIDTH) / w
   const scaledW = naturalW * scale
   const scaledH = naturalH * scale
   const bboxCenterX = (x + w / 2) * scale
   const bboxCenterY = (y + h / 2) * scale
 
   return {
-    leftPct: BADGE_ANCHOR.xPct - (bboxCenterX / CARD_WIDTH * 100),
-    topPct: BADGE_ANCHOR.yPct - (bboxCenterY / CARD_HEIGHT * 100),
+    leftPct: badgeLayout.xPct - (bboxCenterX / CARD_WIDTH * 100),
+    topPct: badgeLayout.yPct - (bboxCenterY / CARD_HEIGHT * 100),
     widthPct: scaledW / CARD_WIDTH * 100,
     heightPct: scaledH / CARD_HEIGHT * 100,
   }
 }
 
 // Text layers — positions are % of card frame, fonts/colors per spec.
+// All three text fields sit in the dark plate below the image area: subtype
+// (facción) and name share a top row, and effectText fills the larger
+// paragraph area below them.
 export const TEXT_AREAS = {
   name: {
-    topPct: 2.5,
-    leftPct: 6,
-    widthPct: 88,
-    heightPct: 11,
+    topPct: 66.5,
+    leftPct: 48,
+    widthPct: 43,
+    heightPct: 5.5,
+    fontSizeCqw: 8,
     fontFamily: "'Bebas Neue', sans-serif",
     color: '#ffffff',
-    align: 'center',
+    align: 'right',
   },
   subtype: {
-    topPct: 14.5,
-    leftPct: 6,
-    widthPct: 88,
-    heightPct: 5,
+    topPct: 66.5,
+    leftPct: 9,
+    widthPct: 37,
+    heightPct: 5.5,
+    fontSizeCqw: 2.6,
     fontFamily: "'Space Grotesk', sans-serif",
     fontWeight: 500,
     color: '#c8f060',
-    align: 'center',
+    align: 'left',
   },
   effectText: {
-    topPct: 81,
+    topPct: 73,
     leftPct: 8,
     widthPct: 84,
-    heightPct: 16,
+    heightPct: 12,
+    fontSizeCqw: 2.4,
     fontFamily: "'Space Grotesk', sans-serif",
     fontWeight: 400,
     color: '#e8e8ec',
     align: 'left',
   },
+}
+
+// Owner-only layout editor: lets the owner drag/resize the name, subtype and
+// effectText boxes and tweak their font size, persisted per-browser so the
+// card maker preview reflects their tuning across sessions.
+const LAYOUT_OVERRIDES_KEY = 'yakutown_card_layout_overrides'
+const OVERRIDABLE_FIELDS = ['topPct', 'leftPct', 'widthPct', 'heightPct', 'fontSizeCqw']
+
+export function loadLayoutOverrides() {
+  try {
+    const raw = localStorage.getItem(LAYOUT_OVERRIDES_KEY)
+    return raw ? JSON.parse(raw) : {}
+  } catch {
+    return {}
+  }
+}
+
+export function saveLayoutOverrides(overrides) {
+  try {
+    localStorage.setItem(LAYOUT_OVERRIDES_KEY, JSON.stringify(overrides))
+  } catch {
+    // ignore (e.g. storage disabled)
+  }
+}
+
+// Merges TEXT_AREAS defaults with per-field overrides for each text area.
+export function getEffectiveTextAreas(overrides = {}) {
+  const result = {}
+  for (const key of Object.keys(TEXT_AREAS)) {
+    const base = TEXT_AREAS[key]
+    const override = overrides[key]
+    if (!override) { result[key] = base; continue }
+    const merged = { ...base }
+    for (const field of OVERRIDABLE_FIELDS) {
+      if (override[field] !== undefined) merged[field] = override[field]
+    }
+    result[key] = merged
+  }
+  return result
+}
+
+export function getEffectiveBadgeLayout(overrides = {}) {
+  return { ...BADGE_LAYOUT, ...(overrides.badge || {}) }
+}
+
+export function getEffectiveCostLayout(overrides = {}) {
+  return { ...COST_LAYOUT, ...(overrides.cost || {}) }
+}
+
+// Merges IMAGE_AREA defaults with the position/size override, clamped so the
+// photo box never moves outside the card frame.
+export function getEffectiveImageArea(overrides = {}) {
+  const base = IMAGE_AREA
+  const override = overrides.image
+  if (!override) return base
+  const merged = { ...base }
+  for (const field of ['topPct', 'leftPct', 'widthPct', 'heightPct']) {
+    if (override[field] !== undefined) merged[field] = override[field]
+  }
+  merged.widthPct = Math.min(merged.widthPct, 100)
+  merged.heightPct = Math.min(merged.heightPct, 100)
+  merged.leftPct = Math.min(Math.max(merged.leftPct, 0), 100 - merged.widthPct)
+  merged.topPct = Math.min(Math.max(merged.topPct, 0), 100 - merged.heightPct)
+  return merged
 }

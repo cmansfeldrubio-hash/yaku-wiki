@@ -98,6 +98,15 @@ const db = {
     if (existing) return updateRow('home_content', 'home', data)
     return insertRow('home_content', { ...data, id: 'home' })
   },
+
+  // Card layout overrides (singleton row, shared globally except the image box)
+  getCardLayout: async ()     => { await ready(); return findById('card_layout', 'layout') },
+  setCardLayout: async (data) => {
+    await ready()
+    const existing = await findById('card_layout', 'layout')
+    if (existing) return updateRow('card_layout', 'layout', data)
+    return insertRow('card_layout', { ...data, id: 'layout' })
+  },
 }
 
 module.exports = db

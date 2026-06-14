@@ -104,6 +104,17 @@ export default function CardForm({ form, setForm, showToast }) {
               ))}
             </select>
           </div>
+
+          <div className={styles.formGroup}>
+            <label className={styles.label}>imagen</label>
+            <div className={styles.imageArea} onClick={() => document.getElementById('card-image-input').click()}>
+              {form.imageUrl
+                ? <img src={form.imageUrl} alt="preview" className={styles.preview} />
+                : <span className={styles.imagePlaceholder}>click para elegir una imagen</span>
+              }
+            </div>
+            <input id="card-image-input" type="file" accept="image/*" style={{ display: 'none' }} onChange={handleFile} />
+          </div>
         </>
       ) : (
         <>
@@ -159,19 +170,16 @@ export default function CardForm({ form, setForm, showToast }) {
 
       <div className={styles.formGroup}>
         <label className={styles.label}>costo</label>
-        <input
+        <select
           className={styles.input}
-          type="number"
-          min={0}
-          max={9}
           value={form.cost}
-          onChange={e => {
-            const v = e.target.value
-            if (v === '') { setForm(f => ({ ...f, cost: '' })); return }
-            const n = Math.min(9, Math.max(0, Number(v)))
-            setForm(f => ({ ...f, cost: n }))
-          }}
-        />
+          onChange={e => setForm(f => ({ ...f, cost: e.target.value === '' ? '' : Number(e.target.value) }))}
+        >
+          <option value="">selecciona un costo...</option>
+          {Array.from({ length: 10 }, (_, i) => i + 1).map(n => (
+            <option key={n} value={n}>{n}</option>
+          ))}
+        </select>
       </div>
 
       <div className={styles.formGroup}>

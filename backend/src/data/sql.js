@@ -9,6 +9,7 @@ const JSON_FIELDS = {
   photos:       ['character_ids', 'event_ids', 'location_ids'],
   memes:        ['character_ids', 'event_ids', 'location_ids', 'likes'],
   home_content: ['sections'],
+  card_layout:  ['overrides'],
 }
 
 // Columns that are stored as 0/1 integers
@@ -121,6 +122,11 @@ const SCHEMA = [
     sections TEXT,
     ad_image_url TEXT,
     ad_link_url TEXT,
+    updated_at TEXT
+  )`,
+  `CREATE TABLE IF NOT EXISTS card_layout (
+    id TEXT PRIMARY KEY,
+    overrides TEXT,
     updated_at TEXT
   )`,
   `CREATE TABLE IF NOT EXISTS users (

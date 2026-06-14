@@ -1,0 +1,106 @@
+.overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.box {
+  position: absolute;
+  box-sizing: border-box;
+  border: 1px dashed #6cf;
+  background: rgba(108, 204, 255, 0.12);
+  pointer-events: auto;
+  cursor: move;
+  touch-action: none;
+  user-select: none;
+}
+
+.label {
+  position: absolute;
+  top: -18px;
+  left: 0;
+  font-size: 10px;
+  font-family: 'Space Mono', monospace;
+  color: #6cf;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 1px 4px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.fontControl {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 3px;
+  padding: 2px 4px;
+  font-size: 10px;
+  font-family: 'Space Mono', monospace;
+  color: #fff;
+}
+
+.fontControl button {
+  width: 16px;
+  height: 16px;
+  border: none;
+  background: #333;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 2px;
+  font-size: 11px;
+  line-height: 1;
+  padding: 0;
+}
+.fontControl button:hover {
+  background: #6cf;
+  color: #0d0d0f;
+}
+
+.sizeControl {
+  position: absolute;
+  bottom: 2px;
+  left: 2px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 3px;
+  padding: 2px 4px;
+  font-size: 10px;
+  font-family: 'Space Mono', monospace;
+  color: #fff;
+}
+
+.sizeControl button {
+  width: 16px;
+  height: 16px;
+  border: none;
+  background: #333;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 2px;
+  font-size: 11px;
+  line-height: 1;
+  padding: 0;
+}
+.sizeControl button:hover {
+  background: #6cf;
+  color: #0d0d0f;
+}
+
+.resizeHandle {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  width: 12px;
+  height: 12px;
+  background: #6cf;
+  border-radius: 2px;
+  cursor: nwse-resize;
+  touch-action: none;
+}
