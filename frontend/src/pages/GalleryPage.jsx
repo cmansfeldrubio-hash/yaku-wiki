@@ -39,17 +39,21 @@ export default function GalleryPage() {
 
   // Synthetic, read-only entries for images assigned directly to wiki entities
   // (character/location/event/glossary banners) so they also show up here.
+  // Once an editor "tags" one of these (creating a real photo record with the
+  // same url via createPhotoFromUrl), skip the synthetic entry to avoid
+  // showing the same image twice.
+  const photoUrls = new Set(photos.map(p => p.url))
   const entityPhotos = [
-    ...characters.filter(c => c.image_url).map(c => ({
+    ...characters.filter(c => c.image_url && !photoUrls.has(c.image_url)).map(c => ({
       id: `character-${c.id}`, url: c.image_url, caption: c.name, source: 'character', slug: c.slug,
     })),
-    ...locations.filter(l => l.image_url).map(l => ({
+    ...locations.filter(l => l.image_url && !photoUrls.has(l.image_url)).map(l => ({
       id: `location-${l.id}`, url: l.image_url, caption: l.name, source: 'location', slug: l.slug,
     })),
-    ...events.filter(e => e.image_url).map(e => ({
+    ...events.filter(e => e.image_url && !photoUrls.has(e.image_url)).map(e => ({
       id: `event-${e.id}`, url: e.image_url, caption: e.name, source: 'event', slug: e.slug,
     })),
-    ...terms.filter(t => t.image_url).map(t => ({
+    ...terms.filter(t => t.image_url && !photoUrls.has(t.image_url)).map(t => ({
       id: `glossary-${t.id}`, url: t.image_url, caption: t.name, source: 'glossary', slug: t.slug,
     })),
   ]
