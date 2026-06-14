@@ -9,6 +9,7 @@ router.get('/by-slug/:slug', GlossaryController.getBySlug)
 router.get('/:id',           GlossaryController.getOne)
 router.post('/',             requireEditor, GlossaryController.create)
 router.put('/:id',           requireEditor, GlossaryController.update)
+router.delete('/tags/:tag',  requireEditor, GlossaryController.removeTag)
 router.delete('/:id',        requireEditor, GlossaryController.remove)
 
 module.exports = router

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { getTerms } from '../api/glossary'
+import { getTerms, deleteTag } from '../api/glossary'
 
 export function useGlossaryTags() {
   const [tags, setTags] = useState([])
@@ -16,5 +16,10 @@ export function useGlossaryTags() {
 
   useEffect(() => { load() }, [load])
 
-  return { tags, reload: load }
+  const removeTag = async (tag) => {
+    await deleteTag(tag)
+    await load()
+  }
+
+  return { tags, reload: load, removeTag }
 }

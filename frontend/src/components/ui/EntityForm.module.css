@@ -69,23 +69,46 @@
   gap: 8px;
 }
 
-.tagOption {
-  padding: 6px 14px;
+.tagOptionWrap {
+  display: flex;
+  align-items: stretch;
   border-radius: var(--radius);
   border: 1px solid var(--border);
   background: var(--bg3);
-  color: var(--text2);
-  font-size: 13px;
-  cursor: pointer;
+  overflow: hidden;
   transition: all 0.15s;
 }
-.tagOption:hover { border-color: var(--border2); color: var(--text); }
+.tagOptionWrap:hover { border-color: var(--border2); }
 
 .tagOptionActive {
   border-color: var(--yakuma);
   background: rgba(200,240,96,0.12);
-  color: var(--yakuma);
 }
+
+.tagOption {
+  padding: 6px 14px;
+  border: none;
+  background: transparent;
+  color: var(--text2);
+  font-size: 13px;
+  cursor: pointer;
+}
+.tagOptionWrap:hover .tagOption { color: var(--text); }
+.tagOptionActive .tagOption { color: var(--yakuma); }
+
+.tagOptionRemove {
+  padding: 6px 10px;
+  border: none;
+  border-left: 1px solid var(--border);
+  background: transparent;
+  color: var(--text3);
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.tagOptionRemove:hover { background: rgba(255,68,68,0.12); color: #ff4444; }
+.tagOptionActive .tagOptionRemove { border-left-color: rgba(200,240,96,0.3); }
 
 .tagAddRow {
   display: flex;

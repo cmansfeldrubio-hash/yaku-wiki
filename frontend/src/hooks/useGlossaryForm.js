@@ -34,6 +34,11 @@ export function useGlossaryForm(term) {
     setFields(f => f.tags.includes(clean) ? f : { ...f, tags: [...f.tags, clean] })
   }
 
+  const removeTagFromFields = (tag) => setFields(f => ({
+    ...f,
+    tags: f.tags.filter(t => t !== tag),
+  }))
+
   const handleSubmit = async () => {
     if (!fields.name.trim()) throw new Error('El nombre es requerido')
     setSaving(true)
@@ -51,5 +56,5 @@ export function useGlossaryForm(term) {
     }
   }
 
-  return { fields, set, toggleTag, addTag, handleSubmit, saving }
+  return { fields, set, toggleTag, addTag, removeTagFromFields, handleSubmit, saving }
 }

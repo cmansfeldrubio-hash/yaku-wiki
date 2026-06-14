@@ -9,7 +9,16 @@ function sanitize(body) {
   }
 }
 
-module.exports = createEntityService(GlossaryRepository, {
+const service = createEntityService(GlossaryRepository, {
   sanitize,
   notFoundMessage: 'Concepto no encontrado',
 })
+
+service.removeTag = async (tag) => {
+  const clean = (tag || '').trim()
+  if (!clean) throw Object.assign(new Error('tag es requerido'), { status: 400 })
+  const affected = await GlossaryRepository.removeTagFromAll(clean)
+  return { message: `Tag "${clean}" eliminado`, tag: clean, affected }
+}
+
+module.exports = service
