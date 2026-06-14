@@ -63,6 +63,13 @@ const db = {
   updatePhoto: async (id, data) => { await ready(); return updateRow('photos', id, data) },
   removePhoto: async (id)       => { await ready(); return deleteRow('photos', id) },
 
+  // Memes
+  getMemes:   async ()         => { await ready(); return findAll('memes') },
+  getMeme:    async (id)       => { await ready(); return findById('memes', id) },
+  addMeme:    async (meme)     => { await ready(); return insertRow('memes', meme) },
+  updateMeme: async (id, data) => { await ready(); return updateRow('memes', id, data) },
+  removeMeme: async (id)       => { await ready(); return deleteRow('memes', id) },
+
   // Users
   getUsers:          async ()         => { await ready(); return findAll('users') },
   getUser:           async (id)       => { await ready(); return findById('users', id) },

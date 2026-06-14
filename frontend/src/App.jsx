@@ -12,6 +12,7 @@ import LocationPage from './pages/LocationPage'
 import GlossaryPage from './pages/GlossaryPage'
 import GlossaryTermPage from './pages/GlossaryTermPage'
 import GalleryPage from './pages/GalleryPage'
+import MemesPage from './pages/MemesPage'
 import UsersPage from './pages/UsersPage'
 import NotFoundPage from './pages/NotFoundPage'
 
@@ -32,6 +33,7 @@ export default function App() {
         <Route path="/la-palabra" element={<GlossaryPage />} />
         <Route path="/la-palabra/:slug" element={<GlossaryTermPage />} />
         <Route path="/galeria" element={<GalleryPage />} />
+        <Route path="/memes" element={<MemesPage />} />
         <Route path="/usuarios" element={<UsersPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
