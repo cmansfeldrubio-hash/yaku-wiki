@@ -10,11 +10,18 @@ export const uploadMeme = async ({ file, caption = '', characterIds = [], eventI
   formData.append('event_ids', JSON.stringify(eventIds))
   formData.append('location_ids', JSON.stringify(locationIds))
   const token = getToken()
-  const res = await fetch(`${API_URL}/memes`, {
-    method: 'POST',
-    headers: token ? { Authorization: `Bearer ${token}` } : {},
-    body: formData,
-  })
+  let res
+  try {
+    res = await fetch(`${API_URL}/memes`, {
+      method: 'POST',
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
+      body: formData,
+    })
+  } catch {
+    // The request can fail at the network/CORS level (e.g. the server
+    // rejects oversized bodies before our code runs) without a JSON response.
+    throw new Error('No se pudo subir el archivo. Puede que sea demasiado pesado (máx. 4MB).')
+  }
   if (!res.ok) {
     const err = await res.json().catch(() => ({}))
     throw new Error(err.error || 'Error subiendo el meme')

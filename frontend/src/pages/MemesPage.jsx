@@ -8,6 +8,7 @@ import { getLocations } from '../api/locations'
 import { useToast } from '../hooks/useToast'
 import { useAuth } from '../hooks/useAuth'
 import { uploadMeme, toggleMemeLike, updateMeme, deleteMeme } from '../api/memes'
+import { compressGif, MAX_FILE_SIZE } from '../utils/gifCompress'
 import Modal from '../components/ui/Modal'
 import CharacterTagPicker from '../components/character/CharacterTagPicker'
 import DeleteConfirmModal from '../components/ui/DeleteConfirmModal'
@@ -165,11 +166,36 @@ function UploadForm({ characters, events, locations, showToast, onSuccess, onCan
   const [eventIds, setEventIds] = useState([])
   const [locationIds, setLocationIds] = useState([])
   const [saving, setSaving] = useState(false)
+  const [compressing, setCompressing] = useState(false)
   const fileRef = useRef()
 
-  const handleFile = (e) => {
-    const f = e.target.files[0]
+  const handleFile = async (e) => {
+    let f = e.target.files[0]
     if (!f) return
+
+    if (f.size > MAX_FILE_SIZE && f.type === 'image/gif') {
+      setCompressing(true)
+      try {
+        f = await compressGif(f)
+      } catch {
+        showToast('No se pudo comprimir el gif. Probá con uno más liviano.', 'error')
+        e.target.value = ''
+        setCompressing(false)
+        return
+      }
+      setCompressing(false)
+      if (f.size > MAX_FILE_SIZE) {
+        showToast('El gif sigue pesando demasiado (máx. 4MB) incluso tras comprimirlo. Probá con uno más corto o de menor resolución.', 'error')
+        e.target.value = ''
+        return
+      }
+      showToast('Gif comprimido para que pese menos de 4MB', 'success')
+    } else if (f.size > MAX_FILE_SIZE) {
+      showToast('El archivo pesa demasiado (máx. 4MB). Probá con una imagen más liviana.', 'error')
+      e.target.value = ''
+      return
+    }
+
     setFile(f)
     setPreviewUrl(URL.createObjectURL(f))
   }
@@ -196,13 +222,15 @@ function UploadForm({ characters, events, locations, showToast, onSuccess, onCan
     <>
       <div className={styles.formGroup}>
         <label className={styles.label}>imagen o gif</label>
-        <div className={styles.imageArea} onClick={() => fileRef.current.click()}>
-          {previewUrl
-            ? <img src={previewUrl} alt="preview" className={styles.preview} />
-            : <span className={styles.imagePlaceholder}>click para elegir una imagen o gif</span>
+        <div className={styles.imageArea} onClick={() => !compressing && fileRef.current.click()}>
+          {compressing
+            ? <span className={styles.imagePlaceholder}>comprimiendo gif...</span>
+            : previewUrl
+              ? <img src={previewUrl} alt="preview" className={styles.preview} />
+              : <span className={styles.imagePlaceholder}>click para elegir una imagen o gif</span>
           }
         </div>
-        <input ref={fileRef} type="file" accept="image/*" style={{ display: 'none' }} onChange={handleFile} />
+        <input ref={fileRef} type="file" accept="image/*" style={{ display: 'none' }} onChange={handleFile} disabled={compressing} />
       </div>
 
       <div className={styles.formGroup}>
@@ -227,7 +255,7 @@ function UploadForm({ characters, events, locations, showToast, onSuccess, onCan
 
       <div className={styles.footer}>
         <button className={styles.btnCancel} onClick={onCancel}>cancelar</button>
-        <button className={styles.btnSave} onClick={handleSubmit} disabled={saving}>
+        <button className={styles.btnSave} onClick={handleSubmit} disabled={saving || compressing}>
           {saving ? 'subiendo...' : 'subir meme'}
         </button>
       </div>
