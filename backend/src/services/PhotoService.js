@@ -51,19 +51,30 @@ const PhotoService = {
   // image_url) to the gallery's photo catalog so it can be tagged/captioned
   // independently, without re-uploading to cloudinary.
   async createFromUrl({ url, caption, character_ids, event_ids, location_ids }) {
-    if (!url || !url.trim()) throw Object.assign(new Error('url es requerida'), { status: 400 })
+    const clean = (url || '').trim()
+    if (!clean) throw Object.assign(new Error('url es requerida'), { status: 400 })
 
-    const now = new Date().toISOString()
-    const photo = {
-      id:            uuidv4(),
-      filename:      url.split('/').pop(),
-      url:           url.trim(),
-      cloudinary_id: null,
+    const tags = {
       caption:       (caption || '').trim(),
       character_ids: await sanitizeIds(character_ids, CharacterRepository),
       event_ids:     await sanitizeIds(event_ids, EventRepository),
       location_ids:  await sanitizeIds(location_ids, LocationRepository),
-      uploaded_at:   now,
+    }
+
+    // A photo for this url may already exist (e.g. tagged previously) — update
+    // it in place instead of creating a duplicate gallery entry.
+    const existing = (await PhotoRepository.findAll({})).find(p => p.url === clean)
+    if (existing) {
+      return PhotoRepository.update(existing.id, { ...existing, ...tags })
+    }
+
+    const photo = {
+      id:            uuidv4(),
+      filename:      clean.split('/').pop(),
+      url:           clean,
+      cloudinary_id: null,
+      uploaded_at:   new Date().toISOString(),
+      ...tags,
     }
     return PhotoRepository.create(photo)
   },
