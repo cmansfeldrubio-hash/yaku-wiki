@@ -19,6 +19,7 @@ export default function Header({ stats }) {
         <Link to="/ubicaciones" className={styles.navLink}>ubicaciones</Link>
         <Link to="/la-palabra" className={styles.navLink}>la palabra</Link>
         <Link to="/galeria" className={styles.navLink}>galería</Link>
+        <Link to="/memes" className={styles.navLink}>los memes</Link>
       </nav>
       <div className={styles.right}>
         <div className={styles.stats}>

@@ -1,0 +1,287 @@
+.page {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text3);
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  transition: color 0.15s;
+}
+.breadcrumb:hover { color: var(--text2); }
+
+.breadcrumbArrow { font-size: 14px; }
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.count {
+  font-size: 12px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text3);
+}
+
+.uploadBtn {
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--yakuma);
+  background: var(--yakuma);
+  color: #0d0d0f;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.uploadBtn:hover { background: var(--yakuma2); border-color: var(--yakuma2); }
+
+.loading, .empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  font-size: 14px;
+  color: var(--text3);
+  font-family: 'Space Mono', monospace;
+  text-align: center;
+}
+
+.errorMsg {
+  font-size: 14px;
+  color: var(--siniestro);
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Feed */
+.feed {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0.85rem 1rem;
+  gap: 8px;
+}
+
+.author {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.date {
+  font-size: 11px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text3);
+  white-space: nowrap;
+}
+
+.imgBtn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: var(--bg3);
+  cursor: pointer;
+}
+
+.cardImg {
+  display: block;
+  width: 100%;
+  max-height: 600px;
+  object-fit: contain;
+  background: var(--bg3);
+}
+
+.caption {
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.5;
+  padding: 0.75rem 1rem 0;
+  margin: 0;
+}
+
+.tags {
+  font-size: 11px;
+  color: var(--text3);
+  font-family: 'Space Mono', monospace;
+  padding: 0.4rem 1rem 0;
+  margin: 0;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0.6rem 1rem 0.85rem;
+}
+
+.likeBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text2);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.likeBtn:hover:not(:disabled) { border-color: var(--siniestro); color: var(--siniestro); }
+.likeBtn:disabled { cursor: default; opacity: 0.6; }
+.likeBtn.liked { border-color: var(--siniestro); color: var(--siniestro); }
+
+.tagBtn {
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text2);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.tagBtn:hover { border-color: var(--yakuma); color: var(--text); }
+
+/* Forms (upload + detail) */
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 1rem;
+}
+
+.label {
+  font-size: 12px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text2);
+  letter-spacing: 0.03em;
+}
+
+.input {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 9px 12px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.input:focus { border-color: var(--yakuma); }
+.input:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.imageArea {
+  width: 100%;
+  min-height: 140px;
+  background: var(--bg3);
+  border: 1px dashed var(--border2);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  overflow: hidden;
+}
+.imageArea:hover { border-color: var(--yakuma); }
+
+.imagePlaceholder {
+  font-size: 13px;
+  color: var(--text3);
+  font-family: 'Space Mono', monospace;
+}
+
+.preview {
+  width: 100%;
+  max-height: 240px;
+  object-fit: cover;
+  display: block;
+}
+
+.detailImg {
+  width: 100%;
+  max-height: 320px;
+  object-fit: contain;
+  background: var(--bg3);
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+}
+
+.footer {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 1.25rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.btnCancel {
+  padding: 9px 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btnCancel:hover { color: var(--text); background: var(--bg3); }
+
+.btnSave {
+  padding: 9px 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--yakuma);
+  background: var(--yakuma);
+  color: #0d0d0f;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btnSave:hover:not(:disabled) { background: var(--yakuma2); border-color: var(--yakuma2); }
+.btnSave:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.btnDelete {
+  padding: 9px 20px;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--siniestro);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btnDelete:hover { background: rgba(255, 68, 68, 0.08); border-color: rgba(255, 68, 68, 0.3); }

@@ -7,6 +7,7 @@ const JSON_FIELDS = {
   locations:    ['tags'],
   glossary:     ['tags'],
   photos:       ['character_ids', 'event_ids', 'location_ids'],
+  memes:        ['character_ids', 'event_ids', 'location_ids', 'likes'],
   home_content: ['sections'],
 }
 
@@ -83,6 +84,20 @@ const SCHEMA = [
     image_url TEXT,
     created_at TEXT,
     updated_at TEXT
+  )`,
+  `CREATE TABLE IF NOT EXISTS memes (
+    id TEXT PRIMARY KEY,
+    filename TEXT,
+    url TEXT,
+    cloudinary_id TEXT,
+    caption TEXT,
+    character_ids TEXT,
+    event_ids TEXT,
+    location_ids TEXT,
+    likes TEXT,
+    uploaded_by TEXT,
+    uploaded_by_name TEXT,
+    uploaded_at TEXT
   )`,
   `CREATE TABLE IF NOT EXISTS home_content (
     id TEXT PRIMARY KEY,
