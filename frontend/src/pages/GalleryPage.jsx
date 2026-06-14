@@ -8,7 +8,7 @@ import { getLocations } from '../api/locations'
 import { getTerms } from '../api/glossary'
 import { useToast } from '../hooks/useToast'
 import { useAuth } from '../hooks/useAuth'
-import { uploadPhoto, updatePhoto, deletePhoto } from '../api/photos'
+import { uploadPhoto, updatePhoto, deletePhoto, createPhotoFromUrl } from '../api/photos'
 import Modal from '../components/ui/Modal'
 import CharacterTagPicker from '../components/character/CharacterTagPicker'
 import DeleteConfirmModal from '../components/ui/DeleteConfirmModal'
@@ -111,7 +111,17 @@ export default function GalleryPage() {
       {/* Detail / edit modal */}
       <Modal isOpen={!!selected} onClose={() => setSelected(null)} title={selected?.source ? selected.caption : (canEdit ? 'Editar foto' : 'Foto')}>
         {selected && selected.source && (
-          <EntityPhotoDetail photo={selected} link={entityLink(selected)} onClose={() => setSelected(null)} />
+          <EntityPhotoDetail
+            photo={selected}
+            link={entityLink(selected)}
+            characters={characters}
+            events={events}
+            locations={locations}
+            canEdit={canEdit}
+            showToast={showToast}
+            onSuccess={async () => { setSelected(null); await reload() }}
+            onClose={() => setSelected(null)}
+          />
         )}
         {selected && !selected.source && (
           <PhotoDetail
@@ -308,18 +318,85 @@ function PhotoDetail({ photo, characters, events, locations, tagNames, canEdit, 
   )
 }
 
-// Read-only view for images that come from a character/location/event/glossary
-// banner image rather than from the photos table — editing those happens on
-// the entity's own page.
-function EntityPhotoDetail({ photo, link, onClose }) {
+// View for images that come from a character/location/event/glossary banner
+// image rather than from the photos table. The image itself is edited on the
+// entity's own page, but editors can add it to the gallery's photo catalog
+// with its own caption and people/event/location tags.
+function EntityPhotoDetail({ photo, link, characters, events, locations, canEdit, showToast, onSuccess, onClose }) {
+  const [caption, setCaption] = useState(photo.caption || '')
+  const [characterIds, setCharacterIds] = useState([])
+  const [eventIds, setEventIds] = useState([])
+  const [locationIds, setLocationIds] = useState([])
+  const [saving, setSaving] = useState(false)
+
+  const toggle = (setter) => (id) => {
+    setter(ids => ids.includes(id) ? ids.filter(x => x !== id) : [...ids, id])
+  }
+
+  const handleSave = async () => {
+    setSaving(true)
+    try {
+      await createPhotoFromUrl({
+        url: photo.url,
+        caption,
+        character_ids: characterIds,
+        event_ids: eventIds,
+        location_ids: locationIds,
+      })
+      showToast('Foto agregada a la galería con su etiquetado', 'success')
+      onSuccess()
+    } catch (e) {
+      showToast(e.message || 'Error guardando el etiquetado', 'error')
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  if (!canEdit) {
+    return (
+      <>
+        <img src={photo.url} alt={photo.caption || 'foto'} className={styles.detailImg} />
+        {photo.caption && <p className={styles.previewCaption}>{photo.caption}</p>}
+        <div className={styles.footer}>
+          {link && <Link to={link} className={styles.galleryLink}>ver página →</Link>}
+          <div style={{ flex: 1 }} />
+          <button className={styles.btnCancel} onClick={onClose}>cerrar</button>
+        </div>
+      </>
+    )
+  }
+
   return (
     <>
       <img src={photo.url} alt={photo.caption || 'foto'} className={styles.detailImg} />
-      {photo.caption && <p className={styles.previewCaption}>{photo.caption}</p>}
+
+      <div className={styles.formGroup}>
+        <label className={styles.label}>descripción</label>
+        <input className={styles.input} value={caption} onChange={e => setCaption(e.target.value)} placeholder="dónde y cuándo fue tomada..." />
+      </div>
+
+      <div className={styles.formGroup}>
+        <label className={styles.label}>personajes en la foto</label>
+        <CharacterTagPicker characters={characters} selectedIds={characterIds} onToggle={toggle(setCharacterIds)} />
+      </div>
+
+      <div className={styles.formGroup}>
+        <label className={styles.label}>eventos relacionados</label>
+        <CharacterTagPicker characters={events} selectedIds={eventIds} onToggle={toggle(setEventIds)} placeholder="buscar evento..." />
+      </div>
+
+      <div className={styles.formGroup}>
+        <label className={styles.label}>ubicaciones relacionadas</label>
+        <CharacterTagPicker characters={locations} selectedIds={locationIds} onToggle={toggle(setLocationIds)} placeholder="buscar ubicación..." />
+      </div>
+
       <div className={styles.footer}>
         {link && <Link to={link} className={styles.galleryLink}>ver página →</Link>}
         <div style={{ flex: 1 }} />
         <button className={styles.btnCancel} onClick={onClose}>cerrar</button>
+        <button className={styles.btnSave} onClick={handleSave} disabled={saving}>
+          {saving ? 'guardando...' : 'guardar etiquetado'}
+        </button>
       </div>
     </>
   )

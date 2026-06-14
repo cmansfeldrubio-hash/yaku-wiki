@@ -35,5 +35,11 @@ export const updatePhoto = (id, data) =>
     body: JSON.stringify(data),
   })
 
+export const createPhotoFromUrl = (data) =>
+  apiFetch('/photos/from-url', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  })
+
 export const deletePhoto = (id) =>
   apiFetch(`/photos/${id}`, { method: 'DELETE' })

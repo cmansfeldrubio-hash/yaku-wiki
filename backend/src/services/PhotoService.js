@@ -47,6 +47,27 @@ const PhotoService = {
     return PhotoRepository.create(photo)
   },
 
+  // Adds an existing entity banner image (character/location/event/glossary
+  // image_url) to the gallery's photo catalog so it can be tagged/captioned
+  // independently, without re-uploading to cloudinary.
+  async createFromUrl({ url, caption, character_ids, event_ids, location_ids }) {
+    if (!url || !url.trim()) throw Object.assign(new Error('url es requerida'), { status: 400 })
+
+    const now = new Date().toISOString()
+    const photo = {
+      id:            uuidv4(),
+      filename:      url.split('/').pop(),
+      url:           url.trim(),
+      cloudinary_id: null,
+      caption:       (caption || '').trim(),
+      character_ids: await sanitizeIds(character_ids, CharacterRepository),
+      event_ids:     await sanitizeIds(event_ids, EventRepository),
+      location_ids:  await sanitizeIds(location_ids, LocationRepository),
+      uploaded_at:   now,
+    }
+    return PhotoRepository.create(photo)
+  },
+
   async update(id, body) {
     const existing = await this.getById(id)
     const updated = {
