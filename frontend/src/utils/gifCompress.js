@@ -4,10 +4,10 @@ export const MAX_FILE_SIZE = 4 * 1024 * 1024 // 4MB — backend/Vercel limit
 
 // Progressively shrink (resize + lossy compress) until it fits under MAX_FILE_SIZE.
 const ATTEMPTS = [
-  '-O1 --lossy=40 --resize 480x_',
-  '-O1 --lossy=80 --resize 360x_',
-  '-O1 --lossy=120 --resize 240x_',
-  '-O1 --lossy=160 --resize 180x_',
+  '-O1 --lossy=40 --colors 256 --resize 480x_',
+  '-O1 --lossy=80 --colors 128 --resize 360x_',
+  '-O1 --lossy=120 --colors 64 --resize 240x_',
+  '-O1 --lossy=160 --colors 32 --resize 180x_',
 ]
 
 export async function compressGif(file) {

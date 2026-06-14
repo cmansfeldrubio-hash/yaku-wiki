@@ -224,7 +224,7 @@ function UploadForm({ characters, events, locations, showToast, onSuccess, onCan
         <label className={styles.label}>imagen o gif</label>
         <div className={styles.imageArea} onClick={() => !compressing && fileRef.current.click()}>
           {compressing
-            ? <span className={styles.imagePlaceholder}>comprimiendo gif...</span>
+            ? <span className={styles.imagePlaceholder}><span className={styles.spinner} /> comprimiendo gif...</span>
             : previewUrl
               ? <img src={previewUrl} alt="preview" className={styles.preview} />
               : <span className={styles.imagePlaceholder}>click para elegir una imagen o gif</span>
@@ -256,7 +256,7 @@ function UploadForm({ characters, events, locations, showToast, onSuccess, onCan
       <div className={styles.footer}>
         <button className={styles.btnCancel} onClick={onCancel}>cancelar</button>
         <button className={styles.btnSave} onClick={handleSubmit} disabled={saving || compressing}>
-          {saving ? 'subiendo...' : 'subir meme'}
+          {saving ? <><span className={styles.spinner} /> subiendo...</> : 'subir meme'}
         </button>
       </div>
     </>
