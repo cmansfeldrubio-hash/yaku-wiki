@@ -15,6 +15,11 @@ const PhotoController = {
     res.status(201).json(photo)
   }),
 
+  createFromUrl: wrap(async (req, res) => {
+    const photo = await PhotoService.createFromUrl(req.body)
+    res.status(201).json(photo)
+  }),
+
   update: wrap(async (req, res) => {
     const photo = await PhotoService.update(req.params.id, req.body)
     res.json(photo)

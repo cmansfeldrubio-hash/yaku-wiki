@@ -6,7 +6,8 @@ const { requireEditor } = require('../middleware/auth')
 const router = Router()
 
 router.get('/',     PhotoController.list)
-router.post('/',    requireEditor, galleryUpload.single('image'), PhotoController.create)
+router.post('/',         requireEditor, galleryUpload.single('image'), PhotoController.create)
+router.post('/from-url', requireEditor, PhotoController.createFromUrl)
 router.patch('/:id', requireEditor, PhotoController.update)
 router.delete('/:id', requireEditor, PhotoController.remove)
 
