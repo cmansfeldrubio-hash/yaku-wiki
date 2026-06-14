@@ -36,13 +36,6 @@ export default function CharactersPage() {
   const { stats, reload: reloadStats } = useStats()
   const { factions, reload: reloadFactions } = useFactions()
 
-  const factionCounts = {
-    total: stats.total,
-    yakuma: stats.yakumas,
-    'seis-siniestros': stats.siniestros,
-    npc: stats.npcs,
-  }
-
   // Modal state
   const [modal, setModal] = useState(null) // 'create' | 'edit' | 'delete' | 'faction'
   const [selected, setSelected] = useState(null)
@@ -82,19 +75,16 @@ export default function CharactersPage() {
     await reloadStats()
   }
 
-  const sectionLabel = {
-    '': 'todos los personajes',
-    yakuma: 'yakumas',
-    'seis-siniestros': 'los seis siniestros',
-    npc: 'npcs',
-    otro: 'otros',
-  }
+  const sectionTitle = activeFaction
+    ? (factions.find(f => f.id === activeFaction)?.label.toLowerCase() || activeFaction)
+    : 'todos los personajes'
 
   return (
     <>
       <div className={styles.layout}>
         <Sidebar
-          factionCounts={factionCounts}
+          factions={factions}
+          totalCount={stats.total}
           activeFaction={activeFaction}
           onFactionChange={setActiveFaction}
           onNewCharacter={onNewCharacter}
@@ -103,7 +93,7 @@ export default function CharactersPage() {
         <main className={styles.main}>
           <SearchInput onChange={handleSearch} />
           <div className={styles.sectionHeader}>
-            <span className={styles.sectionTitle}>{sectionLabel[activeFaction] ?? activeFaction}</span>
+            <span className={styles.sectionTitle}>{sectionTitle}</span>
             <span className={styles.resultsCount}>{total} personajes</span>
           </div>
           <CharacterGrid
