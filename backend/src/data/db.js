@@ -70,6 +70,12 @@ const db = {
   updateMeme: async (id, data) => { await ready(); return updateRow('memes', id, data) },
   removeMeme: async (id)       => { await ready(); return deleteRow('memes', id) },
 
+  // Cards
+  getCards:   async ()         => { await ready(); return findAll('cards') },
+  getCard:    async (id)       => { await ready(); return findById('cards', id) },
+  addCard:    async (card)     => { await ready(); return insertRow('cards', card) },
+  removeCard: async (id)       => { await ready(); return deleteRow('cards', id) },
+
   // Users
   getUsers:          async ()         => { await ready(); return findAll('users') },
   getUser:           async (id)       => { await ready(); return findById('users', id) },

@@ -20,6 +20,7 @@ export default function Header({ stats }) {
         <Link to="/la-palabra" className={styles.navLink}>la palabra</Link>
         <Link to="/galeria" className={styles.navLink}>galería</Link>
         <Link to="/memes" className={styles.navLink}>los memes</Link>
+        <Link to="/cards" className={styles.navLink}>cartas</Link>
       </nav>
       <div className={styles.right}>
         <div className={styles.stats}>
