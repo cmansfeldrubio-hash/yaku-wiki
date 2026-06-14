@@ -4,8 +4,8 @@ import { useGlossaryTags } from '../../hooks/useGlossaryTags'
 import styles from '../ui/EntityForm.module.css'
 
 export default function GlossaryForm({ term, onSuccess, onCancel, showToast }) {
-  const { fields, set, toggleTag, addTag, handleSubmit, saving } = useGlossaryForm(term)
-  const { tags: existingTags, reload: reloadTags } = useGlossaryTags()
+  const { fields, set, toggleTag, addTag, removeTagFromFields, handleSubmit, saving } = useGlossaryForm(term)
+  const { tags: existingTags, reload: reloadTags, removeTag } = useGlossaryTags()
   const [newTag, setNewTag] = useState('')
 
   const onSubmit = async () => {
@@ -25,6 +25,18 @@ export default function GlossaryForm({ term, onSuccess, onCancel, showToast }) {
     reloadTags()
   }
 
+  const handleDeleteTag = async (e, tag) => {
+    e.stopPropagation()
+    if (!window.confirm(`¿Eliminar el tag "${tag}" de la base de datos? Se quitará de todos los conceptos que lo usen.`)) return
+    try {
+      await removeTag(tag)
+      removeTagFromFields(tag)
+      showToast(`Tag "${tag}" eliminado`, 'success')
+    } catch (err) {
+      showToast(err.message || 'Error eliminando el tag', 'error')
+    }
+  }
+
   // Tags asignados al concepto que aún no existen en la lista general (recién creados)
   const allTags = [...new Set([...existingTags, ...fields.tags])].sort((a, b) => a.localeCompare(b))
 
@@ -41,14 +53,24 @@ export default function GlossaryForm({ term, onSuccess, onCancel, showToast }) {
           {allTags.length > 0 ? (
             <div className={styles.tagOptions}>
               {allTags.map(tag => (
-                <button
-                  type="button"
+                <div
                   key={tag}
-                  className={`${styles.tagOption} ${fields.tags.includes(tag) ? styles.tagOptionActive : ''}`}
-                  onClick={() => toggleTag(tag)}
+                  className={`${styles.tagOptionWrap} ${fields.tags.includes(tag) ? styles.tagOptionActive : ''}`}
                 >
-                  {tag}
-                </button>
+                  <button type="button" className={styles.tagOption} onClick={() => toggleTag(tag)}>
+                    {tag}
+                  </button>
+                  {existingTags.includes(tag) && (
+                    <button
+                      type="button"
+                      className={styles.tagOptionRemove}
+                      onClick={e => handleDeleteTag(e, tag)}
+                      title={`eliminar tag "${tag}" de la base de datos`}
+                    >
+                      ×
+                    </button>
+                  )}
+                </div>
               ))}
             </div>
           ) : (
