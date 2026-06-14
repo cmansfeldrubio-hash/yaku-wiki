@@ -61,31 +61,33 @@
 .nameText {
   display: block;
   width: 100%;
-  font-size: clamp(10px, 6.5cqw, 56px);
+  font-size: clamp(12px, 8cqw, 64px);
   letter-spacing: 0.04em;
   text-transform: uppercase;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-shadow: 0 0 6px #000, 0 0 12px #000, 0 2px 4px rgba(0, 0, 0, 0.9);
 }
 
 .subtypeText {
   display: block;
   width: 100%;
-  font-size: clamp(8px, 2.4cqw, 20px);
+  font-size: clamp(8px, 2.6cqw, 22px);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-shadow: 0 0 4px #000, 0 0 8px #000, 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 .effectTextContent {
   display: block;
   width: 100%;
   height: 100%;
-  font-size: clamp(7px, 2cqw, 17px);
-  line-height: 1.35;
+  font-size: clamp(8px, 2.4cqw, 19px);
+  line-height: 1.4;
   overflow: hidden;
   white-space: pre-wrap;
   word-break: break-word;
@@ -99,4 +101,5 @@
   font-size: clamp(10px, 5cqw, 40px);
   text-align: center;
   pointer-events: none;
+  text-shadow: 0 0 4px #000, 0 1px 3px rgba(0, 0, 0, 0.9);
 }

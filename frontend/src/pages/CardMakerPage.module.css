@@ -145,6 +145,7 @@
 
 .previewWrap {
   width: 100%;
+  position: relative;
 }
 
 .actions {
