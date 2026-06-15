@@ -39,7 +39,7 @@ export default function Header({ stats }) {
   return (
     <header className={styles.header}>
       <Link to="/" className={styles.logo}>
-        <div className={styles.logoMark}>YT</div>
+        <img src="/logo.png" alt="Yakutown" className={styles.logoMark} />
         <div>
           <div className={styles.logoText}>Yakutown Wiki</div>
           <div className={styles.logoSub}>Santiago · Década 2010</div>
