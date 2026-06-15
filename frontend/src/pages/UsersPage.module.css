@@ -1,7 +1,13 @@
 .page {
   max-width: 800px;
   margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
+  padding: 1rem 1rem 3rem;
+}
+
+@media (min-width: 800px) {
+  .page {
+    padding: 2rem 1.5rem 4rem;
+  }
 }
 
 .breadcrumb {
@@ -39,6 +45,7 @@
   background: var(--bg2);
   border: 1px solid var(--border);
   border-radius: var(--radius);
+  flex-wrap: wrap;
 }
 
 .avatar {
@@ -91,6 +98,7 @@
   outline: none;
   cursor: pointer;
   transition: border-color 0.15s;
+  min-height: 44px;
 }
 .roleSelect:focus { border-color: var(--yakuma); }
 

@@ -1,7 +1,13 @@
 .page {
   max-width: 900px;
   margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
+  padding: 1rem 1rem 3rem;
+}
+
+@media (min-width: 800px) {
+  .page {
+    padding: 2rem 1.5rem 4rem;
+  }
 }
 
 .breadcrumb {
@@ -24,6 +30,8 @@
   align-items: flex-end;
   justify-content: space-between;
   margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .title {
@@ -48,6 +56,7 @@
   font-weight: 600;
   text-decoration: none;
   transition: all 0.15s;
+  min-height: 44px;
 }
 .createBtn:hover { background: var(--yakuma2); border-color: var(--yakuma2); }
 
@@ -71,8 +80,14 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 1rem;
+}
+
+@media (min-width: 800px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
 }
 
 .cardTile {
@@ -161,6 +176,7 @@
   font-size: 14px;
   cursor: pointer;
   transition: all 0.15s;
+  min-height: 44px;
 }
 .btnCancel:hover { color: var(--text); background: var(--bg3); }
 
@@ -173,5 +189,6 @@
   font-size: 14px;
   cursor: pointer;
   transition: all 0.15s;
+  min-height: 44px;
 }
 .btnDelete:hover { background: rgba(255, 68, 68, 0.08); border-color: rgba(255, 68, 68, 0.3); }

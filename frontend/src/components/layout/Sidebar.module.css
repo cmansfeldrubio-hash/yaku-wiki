@@ -1,11 +1,64 @@
+/* ── Mobile-first: base = hidden drawer ── */
+
+.filterToggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text2);
+  font-size: 14px;
+  font-family: 'Space Mono', monospace;
+  cursor: pointer;
+  transition: all 0.15s;
+  margin-bottom: 0.75rem;
+  min-height: 44px;
+}
+.filterToggle:hover { background: var(--bg3); color: var(--text); border-color: var(--border2); }
+
+.filterIcon { font-size: 16px; }
+
+@media (min-width: 768px) {
+  .filterToggle { display: none; }
+}
 .aside {
   background: var(--bg2);
   border-right: 1px solid var(--border);
-  padding: 1.5rem 1rem;
-  position: sticky;
-  top: 64px;
-  height: calc(100vh - 64px);
+  padding: 1rem;
   overflow-y: auto;
+
+  /* Mobile: off-screen fixed drawer */
+  position: fixed;
+  top: 64px;
+  left: 0;
+  width: 280px;
+  max-width: 85vw;
+  height: calc(100vh - 64px);
+  z-index: 150;
+  transform: translateX(-100%);
+  transition: transform 0.25s ease;
+}
+
+.aside.open {
+  transform: translateX(0);
+}
+
+/* Mobile backdrop behind drawer */
+.backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  top: 64px;
+  background: rgba(0,0,0,0.5);
+  z-index: 140;
+}
+
+.aside.open ~ .backdrop,
+.backdrop.visible {
+  display: block;
 }
 
 .section { margin-bottom: 1.5rem; }
@@ -26,6 +79,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 8px 12px;
+  min-height: 44px;
   border-radius: var(--radius);
   border: none;
   background: transparent;
@@ -56,6 +110,7 @@
 .addBtn {
   width: 100%;
   padding: 10px 12px;
+  min-height: 44px;
   border-radius: var(--radius);
   border: 1px dashed var(--border2);
   background: transparent;
@@ -72,6 +127,7 @@
 .addBtnSecondary {
   width: 100%;
   padding: 10px 12px;
+  min-height: 44px;
   border-radius: var(--radius);
   border: 1px dashed var(--border);
   background: transparent;
@@ -82,3 +138,22 @@
   text-align: center;
 }
 .addBtnSecondary:hover { background: var(--bg3); color: var(--text2); border-color: var(--border2); }
+
+/* ── Desktop: sticky sidebar ── */
+
+@media (min-width: 768px) {
+  .aside {
+    position: sticky;
+    top: 64px;
+    width: auto;
+    max-width: none;
+    z-index: auto;
+    transform: none;
+    transition: none;
+    padding: 1.5rem 1rem;
+  }
+
+  .backdrop {
+    display: none !important;
+  }
+}

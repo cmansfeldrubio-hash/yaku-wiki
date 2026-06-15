@@ -1,7 +1,13 @@
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 1rem;
+}
+
+@media (min-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .group { display: flex; flex-direction: column; gap: 6px; }
@@ -25,7 +31,7 @@
   transition: border-color 0.15s;
 }
 .input:focus, .select:focus, .textarea:focus { border-color: var(--yakuma); }
-.select { appearance: none; cursor: pointer; }
+.select { appearance: none; cursor: pointer; min-height: 44px; }
 .select option { background: var(--bg3); }
 .textarea { resize: vertical; min-height: 70px; line-height: 1.5; }
 
@@ -92,6 +98,7 @@
   color: var(--text2);
   font-size: 13px;
   cursor: pointer;
+  min-height: 44px;
 }
 .tagOptionWrap:hover .tagOption { color: var(--text); }
 .tagOptionActive .tagOption { color: var(--yakuma); }
@@ -106,6 +113,7 @@
   line-height: 1;
   cursor: pointer;
   transition: all 0.15s;
+  min-height: 44px;
 }
 .tagOptionRemove:hover { background: rgba(255,68,68,0.12); color: #ff4444; }
 .tagOptionActive .tagOptionRemove { border-left-color: rgba(200,240,96,0.3); }
@@ -125,6 +133,7 @@
   font-size: 14px;
   white-space: nowrap;
   transition: all 0.15s;
+  min-height: 44px;
 }
 .btnAddTag:hover { background: var(--bg3); color: var(--text); }
 
@@ -145,6 +154,7 @@
   color: var(--text2);
   font-size: 14px;
   transition: all 0.15s;
+  min-height: 44px;
 }
 .btnCancel:hover { color: var(--text); background: var(--bg3); }
 
@@ -157,10 +167,7 @@
   font-size: 14px;
   font-weight: 600;
   transition: all 0.15s;
+  min-height: 44px;
 }
 .btnSave:hover:not(:disabled) { background: var(--yakuma2); border-color: var(--yakuma2); }
 .btnSave:disabled { opacity: 0.6; cursor: not-allowed; }
-
-@media (max-width: 480px) {
-  .grid { grid-template-columns: 1fr; }
-}

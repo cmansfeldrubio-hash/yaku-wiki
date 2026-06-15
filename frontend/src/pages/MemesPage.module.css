@@ -1,7 +1,13 @@
 .page {
   max-width: 600px;
   margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
+  padding: 1rem 1rem 3rem;
+}
+
+@media (min-width: 768px) {
+  .page {
+    padding: 2rem 1.5rem 4rem;
+  }
 }
 
 .breadcrumb {
@@ -48,6 +54,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.15s;
+  min-height: 44px;
 }
 .uploadBtn:hover { background: var(--yakuma2); border-color: var(--yakuma2); }
 
@@ -156,6 +163,7 @@
   font-size: 13px;
   cursor: pointer;
   transition: all 0.15s;
+  min-height: 44px;
 }
 .likeBtn:hover:not(:disabled) { border-color: var(--siniestro); color: var(--siniestro); }
 .likeBtn:disabled { cursor: default; opacity: 0.6; }
@@ -170,6 +178,7 @@
   font-size: 13px;
   cursor: pointer;
   transition: all 0.15s;
+  min-height: 44px;
 }
 .tagBtn:hover { border-color: var(--yakuma); color: var(--text); }
 
@@ -275,6 +284,7 @@
   font-size: 14px;
   cursor: pointer;
   transition: all 0.15s;
+  min-height: 44px;
 }
 .btnCancel:hover { color: var(--text); background: var(--bg3); }
 
@@ -288,6 +298,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.15s;
+  min-height: 44px;
 }
 .btnSave:hover:not(:disabled) { background: var(--yakuma2); border-color: var(--yakuma2); }
 .btnSave:disabled { opacity: 0.6; cursor: not-allowed; }
@@ -301,5 +312,6 @@
   font-size: 14px;
   cursor: pointer;
   transition: all 0.15s;
+  min-height: 44px;
 }
 .btnDelete:hover { background: rgba(255, 68, 68, 0.08); border-color: rgba(255, 68, 68, 0.3); }
