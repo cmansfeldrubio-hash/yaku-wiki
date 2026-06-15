@@ -27,20 +27,13 @@
 .logoMark {
   width: 32px;
   height: 32px;
-  background: var(--yakuma);
   border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Space Mono', monospace;
-  font-weight: 700;
-  font-size: 12px;
-  color: #0d0d0f;
-  letter-spacing: -1px;
+  object-fit: cover;
+  flex-shrink: 0;
 }
 
 @media (min-width: 768px) {
-  .logoMark { width: 36px; height: 36px; font-size: 14px; }
+  .logoMark { width: 36px; height: 36px; }
 }
 
 .logoText { font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: -0.5px; }
