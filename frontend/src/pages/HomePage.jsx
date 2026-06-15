@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import { useHome } from '../hooks/useHome'
 import { useWikiIndex } from '../hooks/useWikiIndex'
+import { useEntityList } from '../hooks/useEntityList'
 import { useToast } from '../hooks/useToast'
+import { getYakumeadas } from '../api/yakumeadas'
 import Modal from '../components/ui/Modal'
 import HomeForm from '../components/home/HomeForm'
 import RichText from '../components/wiki/RichText'
@@ -17,12 +19,14 @@ const TYPE_LABELS = {
 }
 
 const RECOMMENDED_COUNT = 6
+const LATEST_YAKUMEADAS_COUNT = 3
 
 export default function HomePage() {
   const { isOwner } = useAuth()
   const { home, loading, reload } = useHome()
   const index = useWikiIndex()
   const { showToast } = useToast()
+  const { items: yakumeadas } = useEntityList(getYakumeadas)
 
   const [editing, setEditing] = useState(false)
 
@@ -32,6 +36,12 @@ export default function HomePage() {
       .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
       .slice(0, RECOMMENDED_COUNT)
   }, [index])
+
+  const latestYakumeadas = useMemo(() => {
+    return [...yakumeadas]
+      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+      .slice(0, LATEST_YAKUMEADAS_COUNT)
+  }, [yakumeadas])
 
   const handleEditSuccess = async () => {
     setEditing(false)
@@ -91,6 +101,27 @@ export default function HomePage() {
         )}
 
         <div className={styles.main}>
+          {latestYakumeadas.length > 0 && (
+            <div className={styles.news}>
+              <div className={styles.newsTitle}>las últimas yakumeadas</div>
+              <div className={styles.newsGrid}>
+                {latestYakumeadas.map(item => (
+                  <Link key={item.slug} to={`/yakumeada/${item.slug}`} className={styles.newsCard}>
+                    {item.image_url
+                      ? <img src={item.image_url} alt="" className={styles.newsImg} />
+                      : <div className={styles.newsImgFallback}>✦</div>
+                    }
+                    <div className={styles.newsBody}>
+                      <div className={styles.newsCardTitle}>{item.name}</div>
+                      {item.excerpt && <div className={styles.newsExcerpt}>{item.excerpt}</div>}
+                      <div className={styles.newsDate}>{new Date(item.created_at).toLocaleDateString('es-CL')}</div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
           {sections.length > 0 ? (
             <div className={styles.sections}>
               {sections.map((section, i) => (

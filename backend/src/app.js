@@ -19,6 +19,7 @@ const wikiIndexRoutes = require('./routes/wikiIndex')
 const homeRoutes      = require('./routes/home')
 const cardRoutes      = require('./routes/cards')
 const cardLayoutRoutes = require('./routes/cardLayout')
+const yakumeadaRoutes  = require('./routes/yakumeadas')
 
 const app = express()
 
@@ -42,6 +43,7 @@ app.use('/api/wiki-index', wikiIndexRoutes)
 app.use('/api/home',       homeRoutes)
 app.use('/api/cards',      cardRoutes)
 app.use('/api/card-layout', cardLayoutRoutes)
+app.use('/api/yakumeadas', yakumeadaRoutes)
 
 // --- Error handler (must be last) ---
 app.use(errorHandler)

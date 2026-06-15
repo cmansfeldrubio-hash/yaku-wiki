@@ -16,6 +16,8 @@ import MemesPage from './pages/MemesPage'
 import CardsGalleryPage from './pages/CardsGalleryPage'
 import CardMakerPage from './pages/CardMakerPage'
 import UsersPage from './pages/UsersPage'
+import YakumeadasPage from './pages/YakumeadasPage'
+import YakumeadaPage from './pages/YakumeadaPage'
 import NotFoundPage from './pages/NotFoundPage'
 
 export default function App() {
@@ -39,6 +41,8 @@ export default function App() {
         <Route path="/cards" element={<CardsGalleryPage />} />
         <Route path="/cards/crear" element={<CardMakerPage />} />
         <Route path="/usuarios" element={<UsersPage />} />
+        <Route path="/yakumeadas" element={<YakumeadasPage />} />
+        <Route path="/yakumeada/:slug" element={<YakumeadaPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>

@@ -5,6 +5,7 @@ import styles from './Header.module.css'
 
 const NAV_LINKS = [
   { to: '/', label: 'inicio' },
+  { to: '/yakumeadas', label: 'yakumeadas' },
   { to: '/personajes', label: 'personajes' },
   { to: '/eventos', label: 'eventos' },
   { to: '/ubicaciones', label: 'ubicaciones' },
