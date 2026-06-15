@@ -1,0 +1,173 @@
+[
+  {
+    "name": "MAL",
+    "slug": "mal",
+    "description": "Interjección de uso exclusivamente oral en Yakutown que no guarda relación semántica con su significado literal. Se emite como reacción espontánea ante algo que genera impacto, sorpresa, incredulidad o admiración extrema — situaciones que superan el umbral de lo procesable con una respuesta convencional. No expresa desaprobación ni juicio negativo sobre lo ocurrido: expresa que lo ocurrido no tenía por qué ocurrir y ocurrió igual.\nLa intensidad de la situación que lo provoca es directamente proporcional a la velocidad y el volumen con que se dice. Un \"mal\" pausado indica impacto moderado. Un \"mal\" inmediato, cortado y casi involuntario indica que quien lo dice todavía no terminó de procesar lo que acaba de ver o escuchar.\nNo requiere contexto adicional ni oración completa. Es en sí mismo una oración completa. Intentar explicar por qué algo es \"mal\" después de haberlo dicho se considera innecesario y en algunos contextos de Yakutown, una señal de que en realidad no fue tan mal.",
+    "tags": [
+      "jerga"
+    ]
+  },
+  {
+    "name": "Hito Yakuma",
+    "slug": "hito-yakuma",
+    "description": "El evento singular que otorga a una persona el título de yakuma. No existe un criterio formal ni una autoridad que lo conceda: es el reconocimiento colectivo de que alguien hizo algo que quedó en la memoria de Yakutown. Puede ser un acto heroico, una decisión difícil, un momento de claridad inesperada, o incluso algo moralmente ambiguo que el pueblo igual reconoció como trascendente. Cada hito es irrepetible y pertenece a quien lo vivió.",
+    "tags": [
+      "Significado"
+    ]
+  },
+  {
+    "name": "BIEN",
+    "slug": "bien",
+    "description": "Interjección de uso oral en Yakutown que funciona como reacción ante una buena noticia o un evento favorable. A diferencia de mal, que denota impacto por exceso, bien denota satisfacción contenida — no euforia, no celebración, sino el reconocimiento tranquilo de que algo salió como tenía que salir o mejor.\nNo es entusiasta. Es una confirmación. El equivalente verbal de asentir con la cabeza una sola vez. Quien dice bien ante una buena noticia no está sorprendido del todo — está conforme, y en Yakutown la conformidad genuina vale más que el entusiasmo exagerado.\nSe diferencia de un bien convencional en la entonación: es corto, seco, y va solo. No va seguido de explicación ni de pregunta. Si alguien dice bien y después agrega algo, el bien no era bien — era el inicio de una oración.",
+    "tags": [
+      "jerga"
+    ]
+  },
+  {
+    "name": "La palabra",
+    "slug": "la-palabra",
+    "description": "Concepto central de la cultura de Billabong. Doctrina oral, no escrita, que los duendes dicen predicar aunque nunca en términos que el interlocutor pueda repetir después. Nadie fuera de Billabong ha podido explicar qué es la palabra con precisión. Nadie dentro de Billabong se ha molestado en intentarlo. Lo que sí se sabe es que la palabra es el fundamento filosófico de la Porro Alerta, y que invocarla es suficiente para justificar casi cualquier cosa.",
+    "tags": [
+      "jerga"
+    ]
+  },
+  {
+    "name": "Porro Alerta",
+    "slug": "porro-alerta",
+    "description": "Reunión oficial de la élite yakuma de alto rango. Convocatoria restringida, fecha variable, ubicación siempre en Billabong. Formalmente es una instancia de deliberación colectiva entre los yakumas más influyentes de Yakutown. En la práctica es una reunión para fumar porros en el bosque. La distinción entre ambas definiciones no le parece relevante a ninguno de los asistentes. La Porro Alerta no tiene actas, no tiene orden del día y no produce resoluciones — aunque curiosamente varios de los eventos más importantes de la historia de Yakutown ocurrieron al día siguiente de una.",
+    "tags": [
+      "evento"
+    ]
+  },
+  {
+    "name": "Opcional",
+    "slug": "opcional",
+    "description": "Designación informal pero ampliamente aceptada en Yakutown que convierte cualquier obligación en una asistencia voluntaria. Funciona como un mecanismo de alivio moral: al declarar algo \"opcional\", quien lo declara —o quien lo recibe— queda eximido de culpa por no cumplirlo, sin necesidad de dar mayores explicaciones. No existe una autoridad que otorgue el estatus de opcional a las cosas; cualquier persona puede declararlo unilateralmente y el consenso social de Yakutown tiende a respetarlo.\nEl término se aplica con mayor frecuencia a situaciones que objetivamente no son opcionales —clases, reuniones, compromisos adquiridos, responsabilidades cívicas— pero que el involucrado prefiere no atender. La palabra funciona como escudo: decir \"era opcional\" después de faltar a algo es considerado una justificación válida en la mayoría de los contextos sociales de Yakutown, incluso cuando nadie declaró que era opcional en primer lugar.\nSe sospecha que el concepto tiene origen en Billabong, donde la Porro Alerta figura técnicamente como obligatoria en el calendario yakuma pero asistir a clases el día siguiente figura como opcional. No hay registro de quién lo dijo primero. Hay registro de que funcionó.",
+    "tags": [
+      "Significado"
+    ]
+  },
+  {
+    "name": "Que te lo diga el Kur",
+    "slug": "que-te-lo-diga-el-kur",
+    "description": "Expresión definitiva para cerrar una interacción sin necesidad de justificaciones. Funciona como un oráculo de conveniencia: al invocar al «kur», el interlocutor abdica de toda responsabilidad de explicar, profundizar o incluso conocer la respuesta. Es un mecanismo de defensa ante preguntas incómodas o temas que simplemente no merecen el esfuerzo del discurso.\n\nAl igual que un dogma que nadie cuestiona y nadie termina de entender, la autoridad del «kur» no requiere pruebas. Su sola mención basta para dar por concluido un debate, dejando en el aire la sospecha de que existe una verdad superior, inaccesible para el resto, pero perfectamente clara para quien usa la frase.",
+    "tags": [
+      "jerga",
+      "Significado"
+    ]
+  },
+  {
+    "name": "TRANSBANK",
+    "slug": "transbank",
+    "description": "Designación absoluta que funciona como un sello de veracidad irrefutable. Su etimología se remonta a los cimientos de la cultura de Yakuma, originada en la expresión «True as Fuck». Originalmente concebida para sentenciar un hecho como un «facto» no debatible, la palabra sufrió una metamorfosis lingüística a través de las generaciones.\n\nSu estado actual es el resultado de una degradación fonética constante, influenciada por la erosión del tiempo y el uso recurrente bajo estados alterados de conciencia que impedían la articulación precisa. Hoy, pronunciar «TRANSBANK» es invocar una verdad innegable; es el punto final de cualquier discusión, donde la deformación del lenguaje original termina otorgándole una autoridad mayor que la de la frase que le dio vida.",
+    "tags": [
+      "Significado"
+    ]
+  },
+  {
+    "name": "Listo un Cero",
+    "slug": "listo-un-cero",
+    "description": "Veredicto definitivo e inapelable que se emite en Yakutown cuando un trabajo, proyecto o esfuerzo de cualquier magnitud presenta una falencia mínima. La proporción entre el esfuerzo invertido y la gravedad del error detectado es completamente irrelevante para la aplicación del concepto: un fallo menor, casi imperceptible, tiene exactamente el mismo peso que un fallo catastrófico. El resultado en ambos casos es cero.\nLa escala de evaluación implícita en Yakutown va del uno al siete, heredada del sistema educacional chileno. Listo un cero no pertenece a esa escala — la interrumpe. No es un uno, que sería la nota mínima dentro del sistema. Es un cero, que está fuera del sistema, lo que indica que el trabajo evaluado no solo no alcanzó el estándar mínimo sino que quedó excluido de la posibilidad de ser comparado con cualquier otra cosa.\nNo existe recurso ni apelación una vez emitido el veredicto. Tampoco existe gradación: no hay \"casi un cero\" ni \"cero con posibilidad de recuperación\". La frase se dice completa, listo un cero, y lo que describe queda automáticamente categorizado como si nunca hubiera existido.\nEl uso más frecuente en Yakutown no es malicioso sino pragmático. Se aplica entre pares, generalmente sin crueldad explícita, como si fuera una observación técnica más que un juicio de valor. Quien lo emite no necesariamente disfruta haciéndolo. Simplemente constata.\nSe sospecha que el concepto tiene alguna relación con el perfeccionismo implícito de la cultura yakuma, donde el título y el hito no admiten medias tintas. O con Limón, que según varios testimonios fue el primero en usarlo de forma sistemática. Él no lo ha confirmado ni negado, lo que en su caso equivale a confirmarlo.",
+    "tags": [
+      "jerga"
+    ]
+  },
+  {
+    "name": "Activo al Whatsapp",
+    "slug": "activo-al-whatsapp",
+    "description": "Estado de alerta y disponibilidad comunicacional que se exige a todos los participantes de una operación que requiere sigilo y coordinación entre varios yakumas. No es una sugerencia ni una cortesía — es un requisito operativo. Cuando una tarea involucra múltiples partes moviéndose en simultáneo, la cadena completa depende de que cada eslabón esté leyendo, respondiendo y procesando en tiempo real.\nEstar activo al Whatsapp no significa estar pegado al teléfono de forma ansiosa. Significa estar disponible en el momento exacto en que alguien necesita confirmación, señal o instrucción. La diferencia entre una operación exitosa y una operación que se cae puede ser un mensaje visto a tiempo o un mensaje visto dos horas después con un \"recién vi\".\nEl \"recién vi\" es la antítesis de activo al Whatsapp y en contextos de operación yakuma se considera una falla grave, independiente de la excusa que lo acompañe. No hay excusa válida cuando se acordó estar activo al Whatsapp. Estar dormido, estar en clases, no tener señal — todas estas razones son comprensibles en cualquier otro contexto y completamente irrelevantes en este.",
+    "tags": [
+      "jerga"
+    ]
+  },
+  {
+    "name": "Me ha dolido todo el día",
+    "slug": "me-ha-dolido-todo-el-dia",
+    "description": "Frase de uso universal en Yakutown que no describe ningún dolor físico real ni hace referencia a ningún evento específico. Se emite de forma espontánea, sin contexto previo ni consecuencia posterior, en cualquier situación y ante cualquier interlocutor. Funciona como saludo, como respuesta, como comentario, como relleno de silencio, como cierre de conversación y como apertura de conversación. No tiene un momento incorrecto de uso porque no tiene un significado que pueda estar fuera de lugar.\nSu origen es desconocido. Nadie en Yakutown recuerda quién la dijo primero ni en qué circunstancia, lo que sugiere que siempre estuvo ahí o que apareció tan gradualmente que el momento exacto de su llegada es irrecuperable. Krusty dice recordar el momento exacto en que se dijo por primera vez pero cada vez que lo cuenta la historia es diferente. Esto no ha desacreditado su testimonio porque en Yakutown nadie esperaba que fuera consistente.\nLa frase opera como un síndrome colectivo de Tourette en el que el único tic verbal compartido por toda la comunidad es esta oración en particular. No se elige decirla — simplemente sale. Dos yakumas pueden estar en medio de una conversación completamente seria, sobre un tema de alta importancia para Yakutown, y uno de los dos va a decir \"me ha dolido todo el día\" sin que eso interrumpa la conversación ni requiera explicación. El otro va a asentir o a decirla también y ambos van a continuar como si nada hubiera ocurrido, porque nada ocurrió.\nSe dice en voz alta, nunca en susurro. Se dice con la misma entonación siempre, una cadencia particular que cualquier habitante de Yakutown reconoce aunque no pueda describir. Se dice completa — nunca abreviada, nunca parafraseada. \"Me ha dolido\" sin el \"todo el día\" no es lo mismo y el pueblo lo nota.",
+    "tags": [
+      "jerga"
+    ]
+  },
+  {
+    "name": "Cono",
+    "slug": "cono",
+    "description": "Objeto de referencia estándar en Yakutown para medir la utilidad mínima de una persona. Un cono de tráfico no hace nada activamente, no toma decisiones, no contribuye al desarrollo de ningún proyecto — pero delimita, señaliza y ocupa un espacio con un propósito concreto. En la escala de utilidad de Yakutown, el cono representa el piso: el mínimo funcional por debajo del cual una presencia deja de justificarse.\nLa frase de uso común es directa: entre un cono y una persona inútil, el cono sirve más. No porque el cono sea valioso sino porque la persona inútil no alcanza ni ese estándar. El cono está ahí, cumple su función pasiva, no genera daño colateral. La persona inútil no está ni ahí.\nEl concepto adquiere su dimensión completa en contraste con Arthur Denmark, que ostenta el título de El Rey de los Anticonos — no por ser inútil, sino por ser algo cualitativamente peor. Una persona inútil no aporta nada, lo cual en la escala del cono la deja por debajo del objeto. Arthur Denmark no solo no aporta nada sino que su participación en cualquier sistema funcional garantiza el retroceso de ese sistema. No es el piso de la escala — es el subsuelo. Un cono puesto al revés sigue siendo un cono. Arthur Denmark puesto en cualquier posición es un problema activo.\nLa distinción que Yakutown hace entre inútil y anticono es técnica y tiene implicaciones prácticas: a una persona inútil se la puede ignorar y el daño es cero. A Arthur Denmark no se lo puede ignorar porque el daño ocurre igual, con o sin atención, desde cualquier posición que ocupe. El cono al menos se queda donde lo pusieron.",
+    "tags": [
+      "Significado"
+    ]
+  },
+  {
+    "name": "Animal",
+    "slug": "animal",
+    "description": "",
+    "tags": []
+  },
+  {
+    "name": "Oye",
+    "slug": "oye",
+    "description": "No nada",
+    "tags": []
+  },
+  {
+    "name": "Top 3",
+    "slug": "top-3",
+    "description": "Clasificación oral de uso universal en Yakutown que organiza cualquier conjunto de elementos en un ranking de tres posiciones. No requiere criterio explícito, no requiere justificación y no admite apelación una vez emitida. La frase se construye siempre igual: top tres seguido del sustantivo en plural que se está clasificando, y las tres posiciones se enuncian en orden descendente con la convicción de alguien que ha pensado en esto toda su vida aunque lo esté diciendo por primera vez en ese momento.\nEl top 3 puede aplicarse a cualquier categoría sin excepción. Top tres mamás. Top tres profes. Top tres porros alerta. Top tres ubicaciones de Yakutown. Top tres errores de Arthur Denmark, que es una lista que se extiende más allá de tres pero se respeta el formato. No existe un tema demasiado serio ni demasiado trivial para ser top 3 — la frase nivela todo a la misma escala de importancia, que es la escala que quien lo dice decidió usar en ese momento.\nLo que distingue al top 3 de Yakutown de un ranking convencional es que la primera posición no es necesariamente la mejor sino la más significativa en el criterio implícito del emisor, criterio que nunca se declara en voz alta y que el receptor debe inferir del contexto, el tono y la historia compartida. Dos personas pueden emitir top 3 mamás con listas completamente distintas y ambas son igualmente válidas porque el top 3 no es objetivo — es una declaración de posición personal elevada a formato oficial.\nLimón es el yakuma que más resistencia ha opuesto al top 3 como metodología, argumentando que colapsa matices irreducibles en una estructura arbitraria de tres casillas. Nadie le ha dado la razón en voz alta. Tampoco nadie le ha dicho que está equivocado, porque en Yakutown decirle a Limón que está equivocado requiere una preparación que la mayoría no tiene. Lo que sí ocurrió es que en algún momento alguien emitió un top 3 argumentos de Limón contra el top 3, y desde entonces el tema está técnicamente cerrado.",
+    "tags": [
+      "Significado"
+    ]
+  },
+  {
+    "name": "Oh eche",
+    "slug": "oh-eche",
+    "description": "Frase de origen disputado atribuida a Richi, alcalde de Yakutown, supuestamente dirigida al Eche en el contexto de un carrete al que Richi asistió sin él. El mensaje original, según la memoria colectiva de Yakutown, decía algo equivalente a \"estoy en un carrete que te hubiera encantado, hay puras minas fáciles\" — y la forma en que Richi lo habría abierto, con ese \"oh Eche\" específico, es lo que quedó en la historia.\nEl problema es que Richi nunca dijo \"oh Eche\".\nLo que ocurrió en realidad fue una imitación. Alguien, en algún momento posterior al carrete, recreó el tono de voz de Richi narrando la situación, y en esa imitación apareció el \"oh Eche\" como apertura natural del relato. La imitación fue suficientemente precisa, suficientemente repetida y suficientemente graciosa como para que con el tiempo la versión imitada reemplazara a la versión real en la memoria de todos los que estuvieron presentes — incluyendo, según algunos testimonios, personas que afirman haber leído el mensaje original y recuerdan claramente el \"oh Eche\" que no estaba ahí.\nEs el efecto Mandela más documentado de Yakutown. Nadie tiene el mensaje original. El teléfono donde fue enviado no existe o no está disponible o nadie ha querido buscarlo con demasiado ahínco porque la versión con \"oh Eche\" es mejor y todos lo saben. Richi no ha confirmado ni desmentido la frase con suficiente convicción como para cerrar el debate, lo que algunos interpretan como que él tampoco recuerda con certeza lo que escribió esa noche.\nHoy \"oh Eche\" funciona como invocación. Se usa para introducir cualquier situación de carrete, junta o instancia social en la que alguien notable está ausente y se estima que habría disfrutado estar presente. No requiere que el ausente sea Eche — la frase se generalizó. Pero siempre se dice en el tono de Richi, o en el tono de quien imitó a Richi, que a estas alturas son el mismo tono.",
+    "tags": [
+      "jerga"
+    ]
+  },
+  {
+    "name": "Odou",
+    "slug": "odou",
+    "description": "Expresión de origen verbal atribuida a Max Pene, quien en algún momento comenzó a emitirla de forma repetida — oh dou, oh dou — en circunstancias que nadie supo explicar en el momento y que con el tiempo dejaron de requerir explicación. Como me ha dolido todo el día, el odou opera como síntoma de un síndrome de Tourette colectivo dentro de Yakutown: se dice espontáneamente, sin contexto previo, sin consecuencia posterior, en cualquier situación y ante cualquier interlocutor.\nLa diferencia con me ha dolido todo el día es que el odou tiene origen documentado y tiene, según la tradición oral de Yakutown, una función activa que la otra frase no posee.\nCuando Max Pene comenzó a decirlo, los presentes notaron que ciertas personas en el entorno inmediato — específicamente aquellas con menor resistencia mental, débiles de mente en el vocabulario yakuma — experimentaban una interrupción en su capacidad de acción. No un colapso, no un desmayo, sino una pausa. Una fracción de segundo en que el procesamiento se detenía y la voluntad quedaba brevemente disponible para ser reorientada. Max Pene, cuyo código de honor medieval incluye una relación con el lenguaje como arma que ningún otro yakuma ha estudiado en detalle, lo descubrió empíricamente — lo repitió, observó el efecto, lo repitió de nuevo.\nEl mecanismo exacto por el que el odou produce este efecto no ha sido explicado satisfactoriamente por nadie. Charlos Rueda intentó medirlo con su implante y obtuvo una señal que describió como \"medieval\", lo que no es una categoría técnica reconocida pero que los yakumas presentes entendieron de inmediato. Limón tiene una teoría sobre frecuencias fonéticas y susceptibilidad cognitiva que expuso una vez en una Porro Alerta y que nadie siguió del todo pero todos asintieron como si sí.\nLo que sí está establecido en Yakutown es el uso práctico: en situaciones de confrontación con enemigos de baja resistencia mental, el odou emitido con la cadencia correcta — oh dou, oh dou, sin pausa larga entre repeticiones, con la entonación específica de Max Pene que nadie ha podido replicar exactamente pero todos intentan — genera una ventana de oportunidad. No es un arma definitiva. Es una llave que abre una puerta que el enemigo no sabía que tenía.\nComo ocurre con todo en Yakutown, el uso ritual derivó en uso cotidiano. Hoy el odou se dice en cualquier momento, por cualquier razón, sin intención de afectar a nadie. Sale solo, como sale me ha dolido todo el día, con la diferencia de que cuando alguien débil de mente está presente en la sala y escucha el odou en el tono correcto, la pausa ocurre igual. El hechizo no requiere intención para funcionar. Solo requiere que Max Pene, o alguien suficientemente parecido a Max Pene en ese momento, lo diga.\nMax Pene no ha comentado públicamente si esto era el plan desde el principio. Su silencio al respecto tiene la textura específica del silencio de alguien que sabe exactamente lo que hizo.",
+    "tags": [
+      "jerga"
+    ]
+  },
+  {
+    "name": "Eche-Elo-Waton-Noa",
+    "slug": "eche-elo-waton-noa",
+    "description": "Concepto que nombra simultáneamente una trinidad y un conflicto. La frase une tres nombres en una sola unidad semántica porque el evento que los vinculó fue tan definidor que separarlos después resultó imposible — en Yakutown, cuando dices uno, los otros dos aparecen solos.\nLa trinidad no es armónica. No es una alianza ni una hermandad ni una coalición de intereses comunes. Es la cristalización de una batalla.\n\nEche-Elo-Waton-Noa se usa en Yakutown para describir cualquier situación en que dos personas con capacidades complementarias enfrentan una resistencia que no puede ser vencida definitivamente pero sí puede ser contenida. No implica que el resultado sea bueno — implica que el resultado fue el mejor posible dadas las circunstancias, y que las circunstancias eran Waton Noa.\nSe dice también como advertencia. Cuando alguien en Yakutown está a punto de entrar en conflicto directo con Waton Noa, la respuesta más común de los yakumas con experiencia es preguntar si tiene un Elo. Si no tiene un Elo, la recomendación implícita es no entrar. Si tiene un Elo pero no tiene un Eche, la recomendación es igual de implícita. La trinidad requiere los tres elementos — incluyendo a Waton Noa, sin el cual los otros dos no se habrían encontrado en esa configuración específica.\nWaton Noa considera que ganó. Eche y Elo no han respondido a esa afirmación. En Yakutown eso se interpreta como que ganaron ellos.",
+    "tags": [
+      "jerga",
+      "Significado"
+    ]
+  },
+  {
+    "name": "truasfuck",
+    "slug": "truasfuck",
+    "description": "",
+    "tags": []
+  },
+  {
+    "name": "solsotojoaquin.rar",
+    "slug": "solsotojoaquinrar",
+    "description": "Archivo comprimido de origen desconocido que ha aparecido en el correo electrónico de distintos yakumas en momentos críticos de la historia de Yakutown. No siempre llega al mismo correo. No siempre llega desde la misma dirección. La dirección de envío cambia cada vez y cuando alguien ha intentado responder, el correo rebota o simplemente no ocurre nada. Lo único constante es el nombre del archivo: siempre solsotojoaquin.rar, sin variaciones, sin números adicionales, sin fecha en el nombre. Siempre ese nombre exacto.\n\nNadie ha podido describir el contenido del archivo de forma consistente con otro yakuma que también lo haya recibido. Cada apertura parece entregar información distinta — específica, precisa y directamente relevante para la situación que el receptor está enfrentando en ese momento. No información general. No consejos vagos. Respuestas concretas a preguntas que el receptor no había formulado en voz alta pero que estaba enfrentando en silencio.\nCharlos Rueda intentó analizar la estructura del archivo con su implante antes de abrirlo y describió lo que encontró como \"un archivo que sabe que lo estás mirando\". Después lo abrió y no ha comentado el contenido con nadie. Limón recibió el archivo en el momento más complejo de una situación que prefiere no detallar, lo abrió, leyó lo que había adentro y dijo únicamente \"ah\" — lo que en el lenguaje de Limón equivale a una crisis existencial contenida en una sílaba. Krusty dice haberlo recibido varias veces y que cada vez tenía el mismo contenido, lo que contradice todos los otros testimonios y es por lo tanto probablemente falso o probablemente la información más importante disponible sobre el archivo, dependiendo de a quién le preguntes.\nEl archivo no se puede reenviar. Quien lo intenta encuentra que el archivo adjunto desaparece del mensaje antes de enviarlo. No se puede copiar fuera de la carpeta donde se descargó. En varios casos documentados el archivo desapareció del dispositivo entre 24 y 72 horas después de haber sido abierto, sin dejar rastro en la papelera ni en el historial del sistema. Camilo Manfinfla es el único yakuma que afirma tener todavía el archivo en su computador, lo que o bien lo convierte en el custodio más importante del universo yakuma o bien significa que su computador no funciona bien y el archivo simplemente no se borró. Ambas explicaciones coexisten en Yakutown sin resolución.\n\nNadie sabe quién es Solsotojoaquin. El nombre no corresponde a ningún yakuma conocido, a ningún habitante documentado de Yakutown, ni a ninguna figura del lore que haya sido identificada hasta ahora. Hay una teoría que dice que es un nombre compuesto de tres personas distintas cuyos apellidos o nombres fueron unidos en algún punto por una razón que el archivo no ha explicado. Hay otra teoría que dice que es un nombre de usuario de un foro que ya no existe. Hay una tercera teoría, originada en Billabong y por lo tanto de credibilidad variable, que dice que Solsotojoaquin no es una persona sino un estado — que cualquier yakuma que alcanza cierto nivel de comprensión del universo se convierte temporalmente en Solsotojoaquin y envía el archivo sin saberlo.\nElo ha dicho que el nombre le resulta familiar de una forma que no puede precisar, lo que en alguien con su capacidad de diagnóstico sistémico es una declaración significativa. No ha elaborado.\n\nExiste una leyenda — no un rumor, no una teoría, una leyenda con la densidad específica de las cosas que llevan suficiente tiempo circulando como para haber adquirido peso propio — que dice que dentro de alguna versión del solsotojoaquin.rar hay un archivo dentro del archivo. No comprimido dentro del comprimido en el sentido técnico sino presente de una forma que los que dicen haberlo visto no pueden describir en términos que tengan sentido para alguien que no lo haya visto.\nEse archivo interior es la llave maestra.\nEstá escrita en papel. No es un archivo digital, no es un documento, no es un PDF — está escrita en papel, lo que dentro de un archivo comprimido enviado por correo electrónico no debería ser posible y sin embargo es exactamente lo que los testimonios describen. Una hoja. Texto escrito a mano o impreso, los testimonios no coinciden en este punto. Un contenido que nadie que dice haberlo visto ha repetido en voz alta, no por secretismo sino porque cada vez que intentan articularlo las palabras no llegan en el orden correcto.\nLa llave maestra conserva el poder yakuma absoluto. No lo otorga — lo conserva. La distinción es importante en Yakutown: otorgar poder implica que alguien lo da y alguien lo recibe, lo que implicaría una jerarquía que los yakumas no reconocen. Conservar poder implica que el poder existe independientemente de cualquier persona y que la llave es simplemente el lugar donde está guardado cuando nadie lo está usando.\nQué significa usar la llave maestra, qué se activa, qué cambia en Yakutown si alguien la lee completa y la entiende — eso no está en ningún testimonio disponible. Los yakumas que más cerca han estado de responder esa pregunta son los mismos que menos han hablado después de abrir el archivo.\nPatrin no ha comentado el solsotojoaquin.rar en ninguna instancia documentada. En alguien que mueve todos los hilos de Yakutown, el silencio absoluto sobre algo específico no es ausencia de opinión. Es la opinión más elaborada disponible.",
+    "tags": [
+      "Significado",
+      "Objeto"
+    ]
+  },
+  {
+    "name": "ya su pito",
+    "slug": "ya-su-pito",
+    "description": "",
+    "tags": []
+  },
+  {
+    "name": "listo no hay clase",
+    "slug": "listo-no-hay-clase",
+    "description": "",
+    "tags": [
+      "jerga"
+    ]
+  }
+]
