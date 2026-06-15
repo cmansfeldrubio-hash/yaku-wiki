@@ -1,3 +1,5 @@
+/* ── Mobile-first: base = mobile ── */
+
 .wrapper {
   position: relative;
 }
@@ -7,6 +9,7 @@
   align-items: center;
   gap: 8px;
   padding: 6px 12px;
+  min-height: 44px;
   border-radius: var(--radius);
   border: 1px solid var(--border2);
   background: transparent;
@@ -38,18 +41,36 @@
   font-family: 'Space Mono', monospace;
 }
 
+/* Mobile backdrop overlay */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 199;
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+
+/* Mobile: bottom sheet */
 .panel {
-  position: absolute;
-  top: calc(100% + 10px);
+  position: fixed;
+  bottom: 0;
+  left: 0;
   right: 0;
-  width: 280px;
+  width: 100%;
   background: var(--bg2);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  box-shadow: 0 -12px 32px rgba(0,0,0,0.35);
   padding: 1.25rem;
   z-index: 200;
-  animation: slideDown 0.18s ease-out;
+  animation: slideUpMobile 0.2s ease-out;
+}
+
+@keyframes slideUpMobile {
+  from { opacity: 0; transform: translateY(100%); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slideDown {
@@ -125,6 +146,9 @@
   width: 100%;
   text-align: left;
   padding: 9px 10px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
   border-radius: var(--radius);
   border: none;
   background: transparent;
@@ -140,6 +164,7 @@
   width: 100%;
   margin-top: 4px;
   padding: 9px 10px;
+  min-height: 44px;
   border-radius: var(--radius);
   border: 1px solid var(--border2);
   background: transparent;
@@ -149,3 +174,23 @@
   transition: all 0.15s;
 }
 .logoutBtn:hover { background: rgba(255,68,68,0.08); border-color: rgba(255,68,68,0.3); }
+
+/* ── Desktop: dropdown panel ── */
+
+@media (min-width: 768px) {
+  .backdrop {
+    display: none;
+  }
+
+  .panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    bottom: auto;
+    left: auto;
+    width: 280px;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+    animation: slideDown 0.18s ease-out;
+  }
+}

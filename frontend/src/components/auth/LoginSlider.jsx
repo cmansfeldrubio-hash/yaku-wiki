@@ -79,7 +79,9 @@ export default function LoginSlider() {
       </button>
 
       {open && (
-        <div className={styles.panel}>
+        <>
+          <div className={styles.backdrop} onClick={() => setOpen(false)} />
+          <div className={styles.panel}>
           {user ? (
             <>
               <div className={styles.profile}>
@@ -119,7 +121,8 @@ export default function LoginSlider() {
               </p>
             </>
           )}
-        </div>
+          </div>
+        </>
       )}
     </div>
   )

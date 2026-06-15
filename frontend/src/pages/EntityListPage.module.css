@@ -1,7 +1,13 @@
 .page {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
+  padding: 1rem 1rem 3rem;
+}
+
+@media (min-width: 800px) {
+  .page {
+    padding: 2rem 1.5rem 4rem;
+  }
 }
 
 .breadcrumb {
@@ -25,6 +31,7 @@
   justify-content: space-between;
   margin-bottom: 1.5rem;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .title {
@@ -50,6 +57,7 @@
   cursor: pointer;
   transition: all 0.15s;
   white-space: nowrap;
+  min-height: 44px;
 }
 .newBtn:hover { background: var(--yakuma2); border-color: var(--yakuma2); }
 

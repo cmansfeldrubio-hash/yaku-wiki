@@ -19,16 +19,55 @@
   --gold: #f0c040;
   --radius: 8px;
   --radius-lg: 12px;
+  --header-h: 56px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --header-h: 64px;
+  }
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
 
 body {
   font-family: 'Space Grotesk', sans-serif;
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
-button { font-family: 'Space Grotesk', sans-serif; cursor: pointer; }
-input, select, textarea { font-family: 'Space Grotesk', sans-serif; }
+/* Touch-friendly interactive defaults */
+button {
+  font-family: 'Space Grotesk', sans-serif;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+input, select, textarea {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px; /* prevents iOS zoom on focus */
+}
+
+a { -webkit-tap-highlight-color: transparent; }
+
+/* Active state feedback for touch */
+button:active:not(:disabled),
+a:active {
+  opacity: 0.85;
+  transform: scale(0.98);
+}
+
+/* Smooth scroll for anchor links */
+html { scroll-behavior: smooth; }
+
+/* Prevent body scroll when mobile menu is open */
+body.menu-open {
+  overflow: hidden;
+}
