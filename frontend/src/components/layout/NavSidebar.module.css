@@ -129,11 +129,16 @@
   padding: 8px 10px 12px;
 }
 
+.loginArea > * {
+  max-width: 100%;
+}
+
 /* Collapse toggle button */
 .collapseBtn {
   position: absolute;
-  bottom: 80px;
-  right: 8px;
+  top: 50%;
+  right: -11px;
+  transform: translateY(-50%);
   width: 22px;
   height: 22px;
   min-height: 22px;
