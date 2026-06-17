@@ -32,11 +32,11 @@
 
   /* Mobile: off-screen fixed drawer */
   position: fixed;
-  top: 64px;
+  top: 52px;
   left: 0;
   width: 280px;
   max-width: 85vw;
-  height: calc(100vh - 64px);
+  height: calc(100vh - 52px);
   z-index: 150;
   transform: translateX(-100%);
   transition: transform 0.25s ease;
@@ -51,7 +51,7 @@
   display: none;
   position: fixed;
   inset: 0;
-  top: 64px;
+  top: 52px;
   background: rgba(0,0,0,0.5);
   z-index: 140;
 }
@@ -144,16 +144,28 @@
 @media (min-width: 768px) {
   .aside {
     position: sticky;
-    top: 64px;
+    top: 0;
     width: auto;
     max-width: none;
+    height: auto;
+    overflow-y: visible;
     z-index: auto;
-    transform: none;
+    transform: none !important;
     transition: none;
     padding: 1.5rem 1rem;
+    align-self: flex-start;
+  }
+
+  .mobileHeader {
+    display: none;
   }
 
   .backdrop {
     display: none !important;
   }
+
+  .filterToggle {
+    display: none;
+  }
 }
+

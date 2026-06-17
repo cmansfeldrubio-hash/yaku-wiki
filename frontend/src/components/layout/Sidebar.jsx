@@ -23,7 +23,7 @@ export default function Sidebar({ factions, totalCount, activeFaction, onFaction
       {/* Backdrop for mobile */}
       {open && <div className={styles.backdrop} onClick={() => setOpen(false)} />}
 
-      <aside className={`${styles.aside} ${open ? styles.asideOpen : ''}`}>
+      <aside className={`${styles.aside} ${open ? styles.open : ''}`}>
         <div className={styles.mobileHeader}>
           <span className={styles.mobileTitle}>Filtros</span>
           <button className={styles.closeBtn} onClick={() => setOpen(false)}>✕</button>
