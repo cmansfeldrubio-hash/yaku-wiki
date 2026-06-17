@@ -88,20 +88,30 @@
 }
 
 .modeBtn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   background: transparent;
   border: 1px solid var(--border2);
   color: var(--text3);
-  font-size: 14px;
-  padding: 4px 8px;
+  font-size: 12px;
+  font-family: 'Space Mono', monospace;
+  padding: 4px 10px;
   min-height: 30px;
   border-radius: var(--radius);
   cursor: pointer;
   transition: all 0.15s;
 }
 
-.modeBtn:hover, .modeBtn.active { background: var(--bg3); color: var(--text); }
+.modeBtn:hover { background: var(--bg3); color: var(--text); }
+.modeBtn.active { background: var(--bg3); color: var(--yakuma); border-color: var(--yakuma); }
+
+.modeBtnLabel { font-size: 11px; }
 
 .uploadBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font-size: 12px;
   font-family: 'Space Mono', monospace;
   padding: 5px 12px;
@@ -116,6 +126,31 @@
 
 .uploadBtn:hover { background: rgba(200,240,96,0.08); border-color: var(--yakuma); }
 .uploadBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Progress bar */
+.progressBar {
+  position: relative;
+  height: 3px;
+  background: var(--bg3);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--yakuma);
+  transition: width 0.3s ease;
+}
+
+.progressLabel {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text3);
+  white-space: nowrap;
+}
 
 /* Empty state */
 .empty {
@@ -329,3 +364,116 @@
 }
 
 .stripPage:hover .deletePageBtn { opacity: 1; }
+
+/* ===== MANAGE / REORDER PANEL ===== */
+.managePanel {
+  padding: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.manageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  gap: 12px;
+}
+
+.manageTitle {
+  font-size: 12px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text3);
+}
+
+.saveOrderBtn {
+  font-size: 12px;
+  font-family: 'Space Mono', monospace;
+  padding: 6px 16px;
+  min-height: 32px;
+  border-radius: var(--radius);
+  border: none;
+  background: var(--yakuma);
+  color: #0d0d0f;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.saveOrderBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.manageGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+@media (min-width: 600px) {
+  .manageGrid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+}
+
+.manageCard {
+  position: relative;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: grab;
+  transition: border-color 0.15s, opacity 0.15s, transform 0.15s;
+  user-select: none;
+}
+
+.manageCard:hover { border-color: var(--border2); }
+.manageCard.dragging { opacity: 0.4; transform: scale(0.97); }
+
+.dragHandle {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  color: var(--text3);
+  background: rgba(0,0,0,0.45);
+  border-radius: 4px;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+
+.manageThumb {
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  display: block;
+}
+
+.manageNum {
+  display: block;
+  text-align: center;
+  font-size: 11px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text3);
+  padding: 5px 0 4px;
+}
+
+.deleteManageBtn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 24px;
+  height: 24px;
+  min-height: 24px;
+  border-radius: 50%;
+  background: rgba(255,68,68,0.25);
+  border: 1px solid rgba(255,68,68,0.4);
+  color: var(--siniestro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 2;
+}
+
+.manageCard:hover .deleteManageBtn { opacity: 1; }
