@@ -11,7 +11,6 @@
   flex-direction: column;
   z-index: 100;
   transition: width 0.22s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
 }
 
 @media (min-width: 900px) {
@@ -31,7 +30,8 @@
   border-bottom: 1px solid var(--border);
   text-decoration: none;
   flex-shrink: 0;
-  overflow: hidden;
+  overflow: hidden; /* clip text only, not the collapse button */
+  width: 100%;
 }
 
 .logoImg {
@@ -64,6 +64,7 @@
   color: var(--text2);
   text-decoration: none;
   white-space: nowrap;
+  overflow: hidden;
   position: relative;
   transition: color 0.15s, background 0.15s;
 }
@@ -131,17 +132,16 @@
 /* Collapse toggle button */
 .collapseBtn {
   position: absolute;
-  top: 50%;
-  right: -12px;
-  transform: translateY(-50%);
-  width: 24px;
-  height: 24px;
-  min-height: 24px;
+  bottom: 80px;
+  right: 8px;
+  width: 22px;
+  height: 22px;
+  min-height: 22px;
   border-radius: 50%;
   background: var(--bg3);
   border: 1px solid var(--border2);
   color: var(--text2);
-  font-size: 14px;
+  font-size: 13px;
   display: flex;
   align-items: center;
   justify-content: center;
