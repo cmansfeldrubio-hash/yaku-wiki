@@ -16,7 +16,7 @@ function initials(name) {
     .toUpperCase()
 }
 
-export default function LoginSlider() {
+export default function LoginSlider({ compact = false, panelAlign = 'right' }) {
   const { user, login, logout, isOwner } = useAuth()
   const [open, setOpen] = useState(false)
   const buttonRef = useRef(null)
@@ -73,15 +73,15 @@ export default function LoginSlider() {
             ? <img src={user.picture} alt={user.name} className={styles.avatar} />
             : <span className={styles.avatarFallback}>{initials(user.name)}</span>
         ) : (
-          <span>iniciar sesión</span>
+          <span>{compact ? '→' : 'iniciar sesión'}</span>
         )}
-        {user && <span>{user.name?.split(' ')[0]}</span>}
+        {user && !compact && <span>{user.name?.split(' ')[0]}</span>}
       </button>
 
       {open && (
         <>
           <div className={styles.backdrop} onClick={() => setOpen(false)} />
-          <div className={styles.panel}>
+          <div className={styles.panel} style={panelAlign === 'left' ? { right: 'auto', left: 0 } : undefined}>
           {user ? (
             <>
               <div className={styles.profile}>

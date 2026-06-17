@@ -1,0 +1,331 @@
+.reader {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  color: var(--text3);
+}
+
+.error { color: var(--siniestro); }
+
+/* Top bar */
+.topBar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.back {
+  font-size: 12px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text3);
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.back:hover { color: var(--text2); }
+
+.comicMeta {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.comicName {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.formatTag {
+  font-size: 10px;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.manga {
+  background: rgba(200,240,96,0.12);
+  color: var(--yakuma);
+  border: 1px solid rgba(200,240,96,0.25);
+}
+
+.normal {
+  background: rgba(96,184,240,0.1);
+  color: var(--npc);
+  border: 1px solid rgba(96,184,240,0.2);
+}
+
+.topRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.modeBtn {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--text3);
+  font-size: 14px;
+  padding: 4px 8px;
+  min-height: 30px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.modeBtn:hover, .modeBtn.active { background: var(--bg3); color: var(--text); }
+
+.uploadBtn {
+  font-size: 12px;
+  font-family: 'Space Mono', monospace;
+  padding: 5px 12px;
+  min-height: 30px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--yakuma);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.uploadBtn:hover { background: rgba(200,240,96,0.08); border-color: var(--yakuma); }
+.uploadBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Empty state */
+.empty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  color: var(--text3);
+  padding: 4rem;
+  text-align: center;
+}
+
+/* ===== SINGLE PAGE VIEWER ===== */
+.viewer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 0 0;
+  position: relative;
+  user-select: none;
+}
+
+.pageWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
+  max-width: 900px;
+  padding: 0 12px;
+}
+
+.pageImg {
+  max-width: 100%;
+  max-height: calc(100vh - 200px);
+  object-fit: contain;
+  display: block;
+  border-radius: 4px;
+}
+
+/* manga mode: scale a bit more, object-fit cover for consistency */
+.mangaMode .pageImg {
+  image-rendering: crisp-edges;
+}
+
+/* Nav click zones */
+.navZone {
+  position: fixed;
+  top: 60px;
+  bottom: 140px;
+  width: 40%;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.navLeft  { left: 0; }
+.navRight { right: 0; }
+
+/* Delete current page button */
+.deleteCurrentBtn {
+  position: absolute;
+  top: 8px;
+  right: 20px;
+  width: 28px;
+  height: 28px;
+  min-height: 28px;
+  border-radius: 50%;
+  background: rgba(255,68,68,0.2);
+  border: 1px solid rgba(255,68,68,0.4);
+  color: var(--siniestro);
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  z-index: 20;
+}
+
+.deleteCurrentBtn:hover { background: rgba(255,68,68,0.35); }
+
+/* Controls */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0 12px;
+}
+
+.navBtn {
+  width: 36px;
+  height: 36px;
+  min-height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border2);
+  background: var(--bg2);
+  color: var(--text2);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  line-height: 1;
+}
+
+.navBtn:hover:not(:disabled) { background: var(--bg3); color: var(--text); }
+.navBtn:disabled { opacity: 0.25; cursor: not-allowed; }
+
+.pageCount {
+  font-size: 13px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text2);
+  min-width: 60px;
+  text-align: center;
+}
+
+/* Thumbnail strip */
+.thumbs {
+  display: flex;
+  gap: 6px;
+  padding: 10px 16px;
+  overflow-x: auto;
+  border-top: 1px solid var(--border);
+  width: 100%;
+  background: var(--bg2);
+}
+
+.thumbsManga { flex-direction: row-reverse; }
+
+.thumb {
+  flex-shrink: 0;
+  background: none;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  min-height: unset;
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+
+.thumb img {
+  width: 48px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 2px;
+  display: block;
+}
+
+.thumb span {
+  font-size: 9px;
+  font-family: 'Space Mono', monospace;
+  color: var(--text3);
+}
+
+.thumbActive {
+  border-color: var(--yakuma);
+}
+
+/* ===== STRIP MODE ===== */
+.strip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 16px 0 4rem;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.stripManga { direction: rtl; }
+
+.stripPage {
+  position: relative;
+  width: 100%;
+}
+
+.stripImg {
+  width: 100%;
+  display: block;
+}
+
+.deletePageBtn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 26px;
+  height: 26px;
+  min-height: 26px;
+  border-radius: 50%;
+  background: rgba(255,68,68,0.25);
+  border: 1px solid rgba(255,68,68,0.5);
+  color: var(--siniestro);
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.stripPage:hover .deletePageBtn { opacity: 1; }

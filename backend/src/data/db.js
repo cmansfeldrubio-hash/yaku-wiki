@@ -99,6 +99,34 @@ const db = {
     return insertRow('home_content', { ...data, id: 'home' })
   },
 
+  // Comics
+  getComics:   async ()         => { await ready(); return findAll('comics') },
+  getComic:    async (id)       => { await ready(); return findById('comics', id) },
+  addComic:    async (comic)    => { await ready(); return insertRow('comics', comic) },
+  updateComic: async (id, data) => { await ready(); return updateRow('comics', id, data) },
+  removeComic: async (id)       => { await ready(); return deleteRow('comics', id) },
+
+  // Comic pages (raw client needed for WHERE queries)
+  getComicPages: async (comicId) => {
+    await ready()
+    const { client } = require('./sql')
+    const res = await client.execute({
+      sql: 'SELECT * FROM comic_pages WHERE comic_id = :comicId ORDER BY page_number ASC',
+      args: { comicId },
+    })
+    return res.rows.map(r => ({ id: r.id, comic_id: r.comic_id, page_number: Number(r.page_number), image_url: r.image_url, cloudinary_id: r.cloudinary_id, uploaded_at: r.uploaded_at }))
+  },
+  addComicPage:    async (page)     => { await ready(); return insertRow('comic_pages', page) },
+  removeComicPage: async (id)       => { await ready(); return deleteRow('comic_pages', id) },
+  getComicPage:    async (id)       => { await ready(); return findById('comic_pages', id) },
+  updateComicPagesOrder: async (pages) => {
+    await ready()
+    const { client } = require('./sql')
+    for (const { id, page_number } of pages) {
+      await client.execute({ sql: 'UPDATE comic_pages SET page_number = :n WHERE id = :id', args: { n: page_number, id } })
+    }
+  },
+
   // Card layout overrides (singleton row, shared globally except the image box)
   getCardLayout: async ()     => { await ready(); return findById('card_layout', 'layout') },
   setCardLayout: async (data) => {

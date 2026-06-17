@@ -19,13 +19,7 @@
   --gold: #f0c040;
   --radius: 8px;
   --radius-lg: 12px;
-  --header-h: 56px;
-}
-
-@media (min-width: 768px) {
-  :root {
-    --header-h: 64px;
-  }
+  --sidebar-w: 220px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
