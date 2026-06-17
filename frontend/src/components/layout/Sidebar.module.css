@@ -148,11 +148,16 @@
     width: auto;
     max-width: none;
     height: auto;
+    overflow-y: visible;
     z-index: auto;
-    transform: none;
+    transform: none !important;
     transition: none;
     padding: 1.5rem 1rem;
     align-self: flex-start;
+  }
+
+  .mobileHeader {
+    display: none;
   }
 
   .backdrop {
