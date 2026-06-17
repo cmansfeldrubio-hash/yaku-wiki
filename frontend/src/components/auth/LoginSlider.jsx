@@ -16,7 +16,7 @@ function initials(name) {
     .toUpperCase()
 }
 
-export default function LoginSlider({ compact = false, panelAlign = 'right' }) {
+export default function LoginSlider({ compact = false, panelAlign = 'right', panelUp = false }) {
   const { user, login, logout, isOwner } = useAuth()
   const [open, setOpen] = useState(false)
   const buttonRef = useRef(null)
@@ -81,7 +81,10 @@ export default function LoginSlider({ compact = false, panelAlign = 'right' }) {
       {open && (
         <>
           <div className={styles.backdrop} onClick={() => setOpen(false)} />
-          <div className={styles.panel} style={panelAlign === 'left' ? { right: 'auto', left: 0 } : undefined}>
+          <div className={styles.panel} style={{
+            ...(panelAlign === 'left' ? { right: 'auto', left: 0 } : {}),
+            ...(panelUp ? { top: 'auto', bottom: 'calc(100% + 10px)' } : {}),
+          }}>
           {user ? (
             <>
               <div className={styles.profile}>
