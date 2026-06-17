@@ -98,7 +98,7 @@ export default function NavSidebar({ stats }) {
           </div>
         )}
         <div className={styles.loginArea}>
-          <LoginSlider compact={collapsed && !mobile} panelAlign={mobile ? 'right' : 'left'} />
+          <LoginSlider compact={collapsed && !mobile} panelAlign={mobile ? 'right' : 'left'} panelUp={!mobile} />
         </div>
       </div>
     </>
