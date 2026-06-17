@@ -151,6 +151,25 @@ const SCHEMA = [
     created_at TEXT,
     updated_at TEXT
   )`,
+  `CREATE TABLE IF NOT EXISTS comics (
+    id TEXT PRIMARY KEY,
+    slug TEXT UNIQUE,
+    title TEXT,
+    format TEXT,
+    description TEXT,
+    cover_url TEXT,
+    cover_cloudinary_id TEXT,
+    created_at TEXT,
+    updated_at TEXT
+  )`,
+  `CREATE TABLE IF NOT EXISTS comic_pages (
+    id TEXT PRIMARY KEY,
+    comic_id TEXT,
+    page_number INTEGER,
+    image_url TEXT,
+    cloudinary_id TEXT,
+    uploaded_at TEXT
+  )`,
 ]
 
 // Columns added after the initial table creation — applied with

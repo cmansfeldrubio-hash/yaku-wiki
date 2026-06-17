@@ -1,1 +1,18 @@
-/* App shell styles — layout now lives in pages */
+.shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  /* On desktop, offset for fixed sidebar */
+  margin-left: 0;
+}
+
+@media (min-width: 900px) {
+  .main {
+    margin-left: var(--sidebar-w, 220px);
+    transition: margin-left 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}

@@ -20,6 +20,7 @@ const homeRoutes      = require('./routes/home')
 const cardRoutes      = require('./routes/cards')
 const cardLayoutRoutes = require('./routes/cardLayout')
 const yakumeadaRoutes  = require('./routes/yakumeadas')
+const comicRoutes      = require('./routes/comics')
 
 const app = express()
 
@@ -44,6 +45,7 @@ app.use('/api/home',       homeRoutes)
 app.use('/api/cards',      cardRoutes)
 app.use('/api/card-layout', cardLayoutRoutes)
 app.use('/api/yakumeadas', yakumeadaRoutes)
+app.use('/api/comics',    comicRoutes)
 
 // --- Error handler (must be last) ---
 app.use(errorHandler)
