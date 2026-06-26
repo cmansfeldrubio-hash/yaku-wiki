@@ -20,6 +20,7 @@ import YakumeadasPage from './pages/YakumeadasPage'
 import YakumeadaPage from './pages/YakumeadaPage'
 import ComicsPage from './pages/ComicsPage'
 import ComicReaderPage from './pages/ComicReaderPage'
+import GamesPage from './pages/GamesPage'
 import NotFoundPage from './pages/NotFoundPage'
 import styles from './App.module.css'
 
@@ -49,6 +50,7 @@ export default function App() {
           <Route path="/yakumeada/:slug" element={<YakumeadaPage />} />
           <Route path="/comics" element={<ComicsPage />} />
           <Route path="/comics/:slug" element={<ComicReaderPage />} />
+          <Route path="/games" element={<GamesPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

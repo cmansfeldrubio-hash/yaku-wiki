@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Home, Zap, Users, CalendarDays, MapPin, BookOpen, Image, Laugh, LayoutGrid, BookMarked } from 'lucide-react'
+import { Home, Zap, Users, CalendarDays, MapPin, BookOpen, Image, Laugh, LayoutGrid, BookMarked, Gamepad2 } from 'lucide-react'
 import LoginSlider from '../auth/LoginSlider'
 import styles from './NavSidebar.module.css'
 
@@ -17,6 +17,7 @@ const NAV_LINKS = [
   { to: '/cards',       label: 'cartas',      icon: LayoutGrid },
   null,
   { to: '/comics',      label: 'cómics',      icon: BookMarked },
+  { to: '/games',       label: 'yaku games',  icon: Gamepad2 },
 ]
 
 export default function NavSidebar({ stats }) {

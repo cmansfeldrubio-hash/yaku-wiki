@@ -170,6 +170,16 @@ const SCHEMA = [
     cloudinary_id TEXT,
     uploaded_at TEXT
   )`,
+  `CREATE TABLE IF NOT EXISTS games (
+    id TEXT PRIMARY KEY,
+    slug TEXT UNIQUE,
+    name TEXT,
+    description TEXT,
+    url TEXT,
+    image_url TEXT,
+    created_at TEXT,
+    updated_at TEXT
+  )`,
 ]
 
 // Columns added after the initial table creation — applied with
