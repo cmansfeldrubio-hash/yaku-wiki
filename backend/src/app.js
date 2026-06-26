@@ -21,6 +21,7 @@ const cardRoutes      = require('./routes/cards')
 const cardLayoutRoutes = require('./routes/cardLayout')
 const yakumeadaRoutes  = require('./routes/yakumeadas')
 const comicRoutes      = require('./routes/comics')
+const gameRoutes       = require('./routes/games')
 
 const app = express()
 
@@ -46,6 +47,7 @@ app.use('/api/cards',      cardRoutes)
 app.use('/api/card-layout', cardLayoutRoutes)
 app.use('/api/yakumeadas', yakumeadaRoutes)
 app.use('/api/comics',    comicRoutes)
+app.use('/api/games',     gameRoutes)
 
 // --- Error handler (must be last) ---
 app.use(errorHandler)
